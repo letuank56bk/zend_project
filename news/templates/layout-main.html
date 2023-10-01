@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    {% include 'elements/head.html' %}
+</head>
+
+<body>
+<!-- Preloader Start -->
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="{% static 'news/assets/img/logo/logo_zendvn.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Preloader Start -->
+<header>
+    {% include 'elements/header.html' %}
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+<footer>
+    {% include 'elements/footer.html' %}
+</footer>
+<!-- Search model Begin -->
+<div class="search-model-box">
+    <div class="d-flex align-items-center h-100 justify-content-center">
+        <div class="search-close-btn">+</div>
+        <form class="search-model-form" method="GET" action="/search.html">
+            <input type="text" id="search-input" name="keyword" placeholder="Searching key.....">
+        </form>
+    </div>
+</div>
+<!-- Search model end -->
+
+<!-- JS here -->
+
+{% include 'elements/scripts.html' %}
+
+</body>
+
+</html>

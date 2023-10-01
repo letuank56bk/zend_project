@@ -9,3 +9,7 @@ def index(request):
 
 def index123(request):
     return HttpResponse("Hello world, You're at the news index123")
+
+
+def category(request):
+    return render(request, 'pages/category.html', {})
