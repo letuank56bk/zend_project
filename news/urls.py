@@ -6,6 +6,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("", views.index, name="index"),
     path("category", views.category, name="category"),
+    path("article", views.article, name="article"),
+    path("feed", views.feed, name="feed"),
+    path("search", views.search, name="search"),
+
     # Thư viên tinymce --> trình biên soạn HTML
     path('tinymce/', include('tinymce.urls')),
 ]

@@ -1,463 +1,222 @@
-{% extends "layout-main.html" %}
+{% extends "layout-sidebar.html" %}
 {% load static %}
 {% block content %}
-    <!-- About US Start -->
-    <div class="about-area2 gray-bg pt-60 pb-60">
+    <div class="whats-news-wrapper">
+        <!-- Heading & Nav Button -->
+        <div class="row justify-content-between align-items-end mb-15">
+            <div class="col-xl-4">
+                <div class="section-tittle mb-30 ml-2">
+                    <h3>Thể Thao</h3>
+                </div>
+            </div>
+        </div>
+        <!-- Tab content -->
+        <div class="row">
+            <div class="col-12">
+                <!-- Nav Card -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- card one -->
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                         aria-labelledby="nav-home-tab">
+                        <div class="row">
+
+
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="whats-news-single mb-40 mb-40">
+                                    <div class="whates-img">
+                                        <img src="{% static 'news/assets/img/article/238b870f-be88-4d61-8c0a-a42a31b98e9e.jpg' %}"
+                                             alt="" style="height: 200px;">
+                                    </div>
+                                    <div class="whates-caption">
+                                        <h4><a
+                                                href="/tottenham-thang-brighton-gay-tranh-cai-a31.html">Tottenham
+                                            thắng Brighton gây tranh cãi</a></h4>
+                                        <span>by Admin - Apr 10, 2023</span>
+                                        <p>
+                                        <p>Son Heung-min v&agrave; Harry Kane c&ugrave;ng ghi
+                                            b&agrave;n, nhưng trọng t&agrave;i Stuart Attwell
+                                            l&agrave; t&acirc;m điểm trận đấu khi &ocirc;ng từ…</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="whats-news-single mb-40 mb-40">
+                                    <div class="whates-img">
+                                        <img src="{% static 'news/assets/img/article/21a85e8f-68a4-48b8-b8fc-f2034f20d6cc.jpg' %}"
+                                             alt="" style="height: 200px;">
+                                    </div>
+                                    <div class="whates-caption">
+                                        <h4><a
+                                                href="/hlv-doi-thu-thua-nhan-djokovic-vo-doi-a30.html">HLV
+                                            đối thủ thừa nhận Djokovic vô đối</a></h4>
+                                        <span>by Admin - Apr 10, 2023</span>
+                                        <p>
+                                        <p>Theo Stine - người c&ograve;n từng dẫn dắt cựu số một thế
+                                            giới Jim Courier, Djokovic trội hơn Rafael Nadal ở thời
+                                            điểm n&agrave;y. &Ocirc;ng n&oacute;i…</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="whats-news-single mb-40 mb-40">
+                                    <div class="whates-img">
+                                        <img src="{% static 'news/assets/img/article/e2416f5b-0a89-4e0e-a96a-e3cb9aa2d910.jpg' %}"
+                                             alt="" style="height: 200px;">
+                                    </div>
+                                    <div class="whates-caption">
+                                        <h4><a
+                                                href="/liverpool-hoa-arsenal-du-bi-dan-hai-ban-a29.html">Liverpool
+                                            hoà Arsenal dù bị dẫn hai bàn</a></h4>
+                                        <span>by Admin - Apr 10, 2023</span>
+                                        <p>
+                                        <p>Cựu hậu vệ Micah Richards n&oacute;i rằng đ&acirc;y
+                                            l&agrave; trận cầu hay bậc nhất anh từng xem, v&agrave;
+                                            truyền th&ocirc;ng Anh cũng chung quan điểm…</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="whats-news-single mb-40 mb-40">
+                                    <div class="whates-img">
+                                        <img src="{% static 'news/assets/img/article/5027e550-e765-4a21-9b04-23dca9b303da.jpg' %}"
+                                             alt="" style="height: 200px;">
+                                    </div>
+                                    <div class="whates-caption">
+                                        <h4><a
+                                                href="/ronaldo-khong-bat-tay-hlv-al-nassr-sau-tran-hoa-a28.html">Ronaldo
+                                            không bắt tay HLV Al Nassr sau trận hoà</a></h4>
+                                        <span>by Admin - Apr 10, 2023</span>
+                                        <p>
+                                        <p>Đội trưởng Cristiano Ronaldo c&atilde;i nhau với đối thủ,
+                                            rồi đi thẳng v&agrave;o đường hầm m&agrave; kh&ocirc;ng
+                                            bắt tay HLV Rudi Garcia, khi Al Nassr…</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="whats-news-single mb-40 mb-40">
+                                    <div class="whates-img">
+                                        <img src="{% static 'news/assets/img/article/5f147ede-afad-4461-a66f-4d7ba9b55cc5.png' %}"
+                                             alt="" style="height: 200px;">
+                                    </div>
+                                    <div class="whates-caption">
+                                        <h4><a href="/man-utd-tro-lai-top-4-a15.html">Man Utd trở
+                                            lại Top 4</a></h4>
+                                        <span>by Admin - Apr 06, 2023</span>
+                                        <p>
+                                        <p>Man Utd dứt chuỗi ba trận kh&ocirc;ng ghi b&agrave;n với
+                                            chiến thắng 1-0 trước đội kh&aacute;ch Brentford, ở trận
+                                            b&ugrave; v&ograve;ng 25 Ngoại hạng A…</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="whats-news-single mb-40 mb-40">
+                                    <div class="whates-img">
+                                        <img src="{% static 'news/assets/img/article/d41a1080-6298-4ce2-8cad-2aa6d365e64a.png' %}"
+                                             alt="" style="height: 200px;">
+                                    </div>
+                                    <div class="whates-caption">
+                                        <h4><a
+                                                href="/quang-liem-tai-dau-carlsen-o-champions-chess-tour-a14.html">Quang
+                                            Liêm tái đấu Carlsen ở Champions Chess Tour</a></h4>
+                                        <span>by Admin - Apr 06, 2023</span>
+                                        <p>
+                                        <p>C&ugrave;ng thất bại ở tứ kết Chessable Masters
+                                            s&aacute;ng 4/4, n&ecirc;n L&ecirc; Quang Li&ecirc;m
+                                            v&agrave; kỳ thủ số một thế giới Magnus Carlsen sẽ…</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="whats-news-single mb-40 mb-40">
+                                    <div class="whates-img">
+                                        <img src="{% static 'news/assets/img/article/3b87b8db-9f11-40f8-95bf-c252b208333d.jpg' %}"
+                                             alt="" style="height: 200px;">
+                                    </div>
+                                    <div class="whates-caption">
+                                        <h4><a
+                                                href="/barca-tim-nha-tai-tro-tra-luong-cho-messi-a13.html">Barca
+                                            tìm nhà tài trợ trả lương cho Messi</a></h4>
+                                        <span>by Admin - Apr 06, 2023</span>
+                                        <p>
+                                        <p>Barca đang t&igrave;m kiếm một số đối t&aacute;c
+                                            t&agrave;i trợ để hậu thuẫn cho thương vụ đưa ng&ocirc;i
+                                            sao Lionel Messi trở lại Camp Nou h&egrave; 2…</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="whats-news-single mb-40 mb-40">
+                                    <div class="whates-img">
+                                        <img src="{% static 'news/assets/img/article/dba0d5e1-8b8b-4fc4-9284-6d2f5c20648e.jpg' %}"
+                                             alt="" style="height: 200px;">
+                                    </div>
+                                    <div class="whates-caption">
+                                        <h4><a
+                                                href="/hlv-troussier-khong-bat-ngo-ve-ket-qua-boc-tham-a12.html">HLV
+                                            Troussier không bất ngờ về kết quả bốc thăm</a></h4>
+                                        <span>by Admin - Apr 06, 2023</span>
+                                        <p>
+                                        <p>HLV Philippe Troussier c&ugrave;ng ban huấn luyện U22
+                                            Việt Nam đ&atilde; dự đo&aacute;n về kết quả bốc thăm
+                                            chia bảng SEA Games 32, v&agrave; l&ecirc;n…</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Nav Card -->
+            </div>
+        </div>
+    </div>
+    <!--Start pagination -->
+    <div class="pagination-area  gray-bg pb-45 mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-
-                    <div class="whats-news-wrapper">
-                        <!-- Heading & Nav Button -->
-                        <div class="row justify-content-between align-items-end mb-15">
-                            <div class="col-xl-4">
-                                <div class="section-tittle mb-30 ml-2">
-                                    <h3>Thể Thao</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Tab content -->
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Nav Card -->
-                                <div class="tab-content" id="nav-tabContent">
-                                    <!-- card one -->
-                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                         aria-labelledby="nav-home-tab">
-                                        <div class="row">
+                <div class="col-xl-12">
+                    <div class="single-wrap">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">
 
 
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/238b870f-be88-4d61-8c0a-a42a31b98e9e.jpg' %}"
-                                                             alt="" style="height: 200px;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/tottenham-thang-brighton-gay-tranh-cai-a31.html">Tottenham
-                                                            thắng Brighton gây tranh cãi</a></h4>
-                                                        <span>by Admin - Apr 10, 2023</span>
-                                                        <p>
-                                                        <p>Son Heung-min v&agrave; Harry Kane c&ugrave;ng ghi
-                                                            b&agrave;n, nhưng trọng t&agrave;i Stuart Attwell
-                                                            l&agrave; t&acirc;m điểm trận đấu khi &ocirc;ng từ…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/21a85e8f-68a4-48b8-b8fc-f2034f20d6cc.jpg' %}"
-                                                             alt="" style="height: 200px;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/hlv-doi-thu-thua-nhan-djokovic-vo-doi-a30.html">HLV
-                                                            đối thủ thừa nhận Djokovic vô đối</a></h4>
-                                                        <span>by Admin - Apr 10, 2023</span>
-                                                        <p>
-                                                        <p>Theo Stine - người c&ograve;n từng dẫn dắt cựu số một thế
-                                                            giới Jim Courier, Djokovic trội hơn Rafael Nadal ở thời
-                                                            điểm n&agrave;y. &Ocirc;ng n&oacute;i…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/e2416f5b-0a89-4e0e-a96a-e3cb9aa2d910.jpg' %}"
-                                                             alt="" style="height: 200px;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/liverpool-hoa-arsenal-du-bi-dan-hai-ban-a29.html">Liverpool
-                                                            hoà Arsenal dù bị dẫn hai bàn</a></h4>
-                                                        <span>by Admin - Apr 10, 2023</span>
-                                                        <p>
-                                                        <p>Cựu hậu vệ Micah Richards n&oacute;i rằng đ&acirc;y
-                                                            l&agrave; trận cầu hay bậc nhất anh từng xem, v&agrave;
-                                                            truyền th&ocirc;ng Anh cũng chung quan điểm…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/5027e550-e765-4a21-9b04-23dca9b303da.jpg' %}"
-                                                             alt="" style="height: 200px;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/ronaldo-khong-bat-tay-hlv-al-nassr-sau-tran-hoa-a28.html">Ronaldo
-                                                            không bắt tay HLV Al Nassr sau trận hoà</a></h4>
-                                                        <span>by Admin - Apr 10, 2023</span>
-                                                        <p>
-                                                        <p>Đội trưởng Cristiano Ronaldo c&atilde;i nhau với đối thủ,
-                                                            rồi đi thẳng v&agrave;o đường hầm m&agrave; kh&ocirc;ng
-                                                            bắt tay HLV Rudi Garcia, khi Al Nassr…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/5f147ede-afad-4461-a66f-4d7ba9b55cc5.png' %}"
-                                                             alt="" style="height: 200px;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a href="/man-utd-tro-lai-top-4-a15.html">Man Utd trở
-                                                            lại Top 4</a></h4>
-                                                        <span>by Admin - Apr 06, 2023</span>
-                                                        <p>
-                                                        <p>Man Utd dứt chuỗi ba trận kh&ocirc;ng ghi b&agrave;n với
-                                                            chiến thắng 1-0 trước đội kh&aacute;ch Brentford, ở trận
-                                                            b&ugrave; v&ograve;ng 25 Ngoại hạng A…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/d41a1080-6298-4ce2-8cad-2aa6d365e64a.png' %}"
-                                                             alt="" style="height: 200px;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/quang-liem-tai-dau-carlsen-o-champions-chess-tour-a14.html">Quang
-                                                            Liêm tái đấu Carlsen ở Champions Chess Tour</a></h4>
-                                                        <span>by Admin - Apr 06, 2023</span>
-                                                        <p>
-                                                        <p>C&ugrave;ng thất bại ở tứ kết Chessable Masters
-                                                            s&aacute;ng 4/4, n&ecirc;n L&ecirc; Quang Li&ecirc;m
-                                                            v&agrave; kỳ thủ số một thế giới Magnus Carlsen sẽ…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/3b87b8db-9f11-40f8-95bf-c252b208333d.jpg' %}"
-                                                             alt="" style="height: 200px;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/barca-tim-nha-tai-tro-tra-luong-cho-messi-a13.html">Barca
-                                                            tìm nhà tài trợ trả lương cho Messi</a></h4>
-                                                        <span>by Admin - Apr 06, 2023</span>
-                                                        <p>
-                                                        <p>Barca đang t&igrave;m kiếm một số đối t&aacute;c
-                                                            t&agrave;i trợ để hậu thuẫn cho thương vụ đưa ng&ocirc;i
-                                                            sao Lionel Messi trở lại Camp Nou h&egrave; 2…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/dba0d5e1-8b8b-4fc4-9284-6d2f5c20648e.jpg' %}"
-                                                             alt="" style="height: 200px;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/hlv-troussier-khong-bat-ngo-ve-ket-qua-boc-tham-a12.html">HLV
-                                                            Troussier không bất ngờ về kết quả bốc thăm</a></h4>
-                                                        <span>by Admin - Apr 06, 2023</span>
-                                                        <p>
-                                                        <p>HLV Philippe Troussier c&ugrave;ng ban huấn luyện U22
-                                                            Việt Nam đ&atilde; dự đo&aacute;n về kết quả bốc thăm
-                                                            chia bảng SEA Games 32, v&agrave; l&ecirc;n…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Nav Card -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Start pagination -->
-                    <div class="pagination-area  gray-bg pb-45 mt-5">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="single-wrap">
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination justify-content-start">
-
-
-                                                <li class="page-item active"><a class="page-link" href="#">1</a>
-                                                </li>
-
-
-                                                <li class="page-item"><a class="page-link"
-                                                                         href="/the-thao.html?page=2">2</a></li>
-
-
-                                                <li class="page-item">
-                                                    <a class="page-link" href="/the-thao.html?page=2">
-                                                        <i class="fas fa-arrow-right text-primary"></i>
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End pagination  -->
-
-
-                </div>
-                <div class="col-lg-4">
-
-                    <div class="blog_right_sidebar">
-
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Danh Mục</h4>
-                            <ul class="list cat-list">
-
-                                <li>
-                                    <a href="/kinh-doanh.html" class="d-flex">
-                                        <p>Kinh Doanh (11)</p>
-                                    </a>
+                                <li class="page-item active"><a class="page-link" href="#">1</a>
                                 </li>
 
-                                <li>
-                                    <a href="/khoa-hoc.html" class="d-flex">
-                                        <p>Khoa Học (12)</p>
-                                    </a>
-                                </li>
 
-                                <li>
-                                    <a href="/the-thao.html" class="d-flex">
-                                        <p class="text-primary">Thể Thao (11)</p>
+                                <li class="page-item"><a class="page-link"
+                                                         href="/the-thao.html?page=2">2</a></li>
+
+
+                                <li class="page-item">
+                                    <a class="page-link" href="/the-thao.html?page=2">
+                                        <i class="fas fa-arrow-right text-primary"></i>
                                     </a>
                                 </li>
 
                             </ul>
-                        </aside>
-
-
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Tin Tổng Hợp</h4>
-                            <ul class="list cat-list">
-
-                                <li>
-                                    <a href="/tin-tuc-tong-hop-vnexpress.html">
-                                        <p>Vnexpress</p>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="/tin-tuc-tong-hop-thanh-nien.html">
-                                        <p>Thanh Niên</p>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="/tin-tuc-tong-hop-bao-tin-tuc.html">
-                                        <p>Báo Tin Tức</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </aside>
-
-
-                        <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Bài Viết Gần Đây</h3>
-
-                            <div class="media post_item">
-                                <img src="{% static 'news/assets/img/article/05141964-e265-4de4-be4a-17176801fb99.jpg' %}"
-                                     alt="post"
-                                     style="width: 30%;">
-                                <div class="media-body">
-                                    <a href="/tran-dong-dat-tung-lam-lech-truc-trai-dat-a35.html">
-                                        <h3>Trận động đất từng làm lệch trục Trái Đất</h3>
-                                    </a>
-                                    <p></p>
-                                </div>
-                            </div>
-
-                            <div class="media post_item">
-                                <img src="{% static 'news/assets/img/article/6486ea94-8f4e-4d74-8cc4-9f9dfe5f227a.jpg' %}"
-                                     alt="post"
-                                     style="width: 30%;">
-                                <div class="media-body">
-                                    <a href="/toa-nha-go-10-tang-co-the-chiu-dong-dat-a34.html">
-                                        <h3>Tòa nhà gỗ 10 tầng có thể chịu động đất</h3>
-                                    </a>
-                                    <p></p>
-                                </div>
-                            </div>
-
-                            <div class="media post_item">
-                                <img src="{% static 'news/assets/img/article/af131eb3-b133-4944-b333-6b4e841ddd17.jpg' %}"
-                                     alt="post"
-                                     style="width: 30%;">
-                                <div class="media-body">
-                                    <a href="/nui-co-the-moc-cao-toi-dau-tren-trai-dat-a33.html">
-                                        <h3>Núi có thể mọc cao tới đâu trên Trái Đất?</h3>
-                                    </a>
-                                    <p></p>
-                                </div>
-                            </div>
-
-                            <div class="media post_item">
-                                <img src="{% static 'news/assets/img/article/595c35ad-dd85-4d8c-9939-2ed7098053b1.jpg' %}"
-                                     alt="post"
-                                     style="width: 30%;">
-                                <div class="media-body">
-                                    <a href="/ca-voi-khong-lo-lien-tuc-chet-dat-vao-dao-bali-a32.html">
-                                        <h3>Cá voi khổng lồ liên tục chết dạt vào đảo Bali</h3>
-                                    </a>
-                                    <p></p>
-                                </div>
-                            </div>
-
-                            <div class="media post_item">
-                                <img src="{% static 'news/assets/img/article/238b870f-be88-4d61-8c0a-a42a31b98e9e.jpg' %}"
-                                     alt="post"
-                                     style="width: 30%;">
-                                <div class="media-body">
-                                    <a href="/tottenham-thang-brighton-gay-tranh-cai-a31.html">
-                                        <h3>Tottenham thắng Brighton gây tranh cãi</h3>
-                                    </a>
-                                    <p></p>
-                                </div>
-                            </div>
-
-                        </aside>
-
-
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title mb-2" style="margin-bottom: 0 !important;">Giá Coin</h4>
-                            <table class="table" style="width: 100%;">
-                                <thead>
-                                <tr>
-                                    <th>Tên</th>
-                                    <th>Giá</th>
-                                    <th>Biến Động</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr>
-                                    <td>Bitcoin</td>
-                                    <td>30,987.57</td>
-                                    <td class="text-success">
-                                        3.05 %
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Ethereum</td>
-                                    <td>2,114.96</td>
-                                    <td class="text-success">
-                                        10.37 %
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Tether</td>
-                                    <td>1.00</td>
-                                    <td class="text-success">
-                                        0.01 %
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>BNB</td>
-                                    <td>334.23</td>
-                                    <td class="text-success">
-                                        4.88 %
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>USD Coin</td>
-                                    <td>1.00</td>
-                                    <td class="text-danger">
-                                        0.00 %
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </aside>
-
-
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title mb-2" style="margin-bottom: 0 !important;">Giá Vàng</h4>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Loại vàng</th>
-                                    <th scope="col">Mua</th>
-                                    <th scope="col">Bán</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr>
-                                    <td>Vàng SJC 1L - 10L</td>
-                                    <td>66.500</td>
-                                    <td>67.100</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Vàng nhẫn SJC 99,99 1 chỉ, 2 chỉ, 5 chỉ</td>
-                                    <td>56.100</td>
-                                    <td>57.100</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Vàng nhẫn SJC 99,99 0,5 chỉ</td>
-                                    <td>56.100</td>
-                                    <td>57.200</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Vàng nữ trang 99,99%</td>
-                                    <td>55.900</td>
-                                    <td>56.700</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Vàng nữ trang 99%</td>
-                                    <td>54.839</td>
-                                    <td>56.139</td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </aside>
-
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- About US End -->
+    <!-- End pagination  -->
 {% endblock %}

@@ -4,12 +4,20 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello world, You're at the news index")
-
-
-def index123(request):
-    return HttpResponse("Hello world, You're at the news index123")
+    return render(request, 'pages/index.html', {})
 
 
 def category(request):
     return render(request, 'pages/category.html', {})
+
+
+def article(request):
+    return render(request, 'pages/article.html', {})
+
+
+def feed(request):
+    return render(request, 'pages/feed.html', {})
+
+
+def search(request):
+    return render(request, 'pages/search.html', {})
