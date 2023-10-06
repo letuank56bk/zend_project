@@ -1,468 +1,150 @@
 {% extends "layout-main.html" %}
 {% load static %}
 {% block main-content %}
-    <!-- Trending Area Start -->
-    <div class="trending-area fix pt-25 gray-bg">
-        <div class="container">
-            <div class="trending-main">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <!-- Trending Top -->
-                        <div class="slider-active">
-
-                            <div class="single-slider">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="{% static 'static/news/assets/img/article/bfab1bf4-a659-4e1e-a3e7-f65cd3754ac7.jpg' %}"
-                                             alt="" style="height: 520px; object-fit: cover;">
-                                        <div class="trend-top-cap">
+    {% if items_article_special|length > 2 %}
+        <!-- Trending Area Start -->
+        <div class="trending-area fix pt-25 gray-bg">
+            <div class="container">
+                <div class="trending-main">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Trending Top -->
+                            <div class="slider-active">
+                                {# slice:"" --> giới hạn số lượng bài viết hiển thị#}
+                                {# slice:"2:" --> lấy tất cả các bài viết từ số 2 trở đi  #}
+                                {% for item in items_article_special|slice:"2:" %}
+                                    <div class="single-slider">
+                                        <div class="trending-top mb-30">
+                                            <div class="trend-top-img">
+                                                <img src="{{ item.image.url }}"
+                                                     alt="" style="height: 520px; object-fit: cover;">
+                                                <div class="trend-top-cap">
                                                 <span class="bgb" data-animation="fadeInUp" data-delay=".2s"
-                                                      data-duration="1000ms">Kinh Doanh</span>
-                                            <h2><a href="/nga-giam-san-luong-dau-700000-thung-moi-ngay-a25.html"
-                                                   data-animation="fadeInUp" data-delay=".4s"
-                                                   data-duration="1000ms">Nga giảm sản lượng dầu 700.000 thùng mỗi
-                                                ngày</a></h2>
-                                            <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">by
-                                                Admin - Apr 10, 2023</p>
+                                                      data-duration="1000ms">{{ item.category }}</span>
+                                                    <h2><a href="{{ item.get_absolute_url }}"
+                                                           data-animation="fadeInUp" data-delay=".4s"
+                                                           data-duration="1000ms">{{ item.name }}</a></h2>
+                                                    <p data-animation="fadeInUp" data-delay=".6s"
+                                                       data-duration="1000ms">by
+                                                        Admin - {{ item.publish_date|date:"d/m/Y" }}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             </div>
-
-                            <div class="single-slider">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="{% static 'news/assets/img/article/4a355112-2462-421e-b864-e4b26aa91e54.jpg' %}"
-                                             alt="" style="height: 520px; object-fit: cover;">
-                                        <div class="trend-top-cap">
-                                                <span class="bgb" data-animation="fadeInUp" data-delay=".2s"
-                                                      data-duration="1000ms">Khoa Học</span>
-                                            <h2><a href="/nguoi-dan-ong-tim-thay-cuc-dja-chua-26-kg-vang-a23.html"
-                                                   data-animation="fadeInUp" data-delay=".4s"
-                                                   data-duration="1000ms">Người đàn ông tìm thấy cục đá chứa 2,6 kg
-                                                vàng</a></h2>
-                                            <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">by
-                                                Admin - Apr 06, 2023</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single-slider">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="{% static 'news/assets/img/article/bd6f273d-4017-48e8-a18c-14801305439f.jpg' %}"
-                                             alt="" style="height: 520px; object-fit: cover;">
-                                        <div class="trend-top-cap">
-                                                <span class="bgb" data-animation="fadeInUp" data-delay=".2s"
-                                                      data-duration="1000ms">Khoa Học</span>
-                                            <h2>
-                                                <a href="/dieu-gi-xay-ra-neu-tieu-hanh-tinh-900m-dam-vao-trai-djat-a22.html"
-                                                   data-animation="fadeInUp" data-delay=".4s"
-                                                   data-duration="1000ms">Điều gì xảy ra nếu tiểu hành tinh 900m
-                                                    đâm vào Trái Đất?</a></h2>
-                                            <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">by
-                                                Admin - Apr 06, 2023</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
-                    <!-- Right content -->
-                    <div class="col-lg-4">
-                        <!-- Trending Top -->
-                        <div class="row">
+                        <!-- Right content -->
+                        <div class="col-lg-4">
+                            <!-- Trending Top -->
+                            <div class="row">
 
-                            <div class="col-lg-12 col-md-6 col-sm-6">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="{% static 'news/assets/img/article/3b87b8db-9f11-40f8-95bf-c252b208333d.jpg' %}"
-                                             alt="" style="height: 245px;">
-                                        <div class="trend-top-cap trend-top-cap2">
-                                            <span class="bgb">Thể Thao</span>
-                                            <h2><a href="/barca-tim-nha-tai-tro-tra-luong-cho-messi-a13.html">Barca
-                                                tìm nhà tài trợ trả lương cho Messi</a></h2>
-                                            <p>by Admin - Apr 06, 2023</p>
+                                {# slice:"3:" --> bỏ đi 3 bài đầu #}
+                                {# slice:":2" --> lấy 2 bài đầu  #}
+                                {% for item in items_article_special|slice:":2" %}
+                                    <div class="col-lg-12 col-md-6 col-sm-6">
+                                        <div class="trending-top mb-30">
+                                            <div class="trend-top-img">
+                                                <img src="{{ item.image.url }}"
+                                                     alt="" style="height: 245px;">
+                                                <div class="trend-top-cap trend-top-cap2">
+                                                    <span class="bgb">{{ item.category }}</span>
+                                                    <h2>
+                                                        <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                                                    </h2>
+                                                    <p>by Admin - {{ item.publish_date|date:"d/m/Y" }}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                {% endfor %}
 
-                            <div class="col-lg-12 col-md-6 col-sm-6">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="{% static 'news/assets/img/article/fa828ded-9118-4327-abee-a77981d8819b.jpg' %}"
-                                             alt="" style="height: 245px;">
-                                        <div class="trend-top-cap trend-top-cap2">
-                                            <span class="bgb">Thể Thao</span>
-                                            <h2><a href="/ronaldo-lap-cu-dup-tran-thu-ba-lien-tiep-a11.html">Ronaldo
-                                                lập cú đúp trận thứ ba liên tiếp</a></h2>
-                                            <p>by Admin - Apr 06, 2023</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Trending Area End -->
-
+        <!-- Trending Area End -->
+    {% endif %}
     <!-- What's New Start -->
     <section class="whats-news-area pb-20 gray-bg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-
-                    <div class="whats-news-wrapper mb-5">
-                        <!-- Heading & Nav Button -->
-                        <div class="row justify-content-between align-items-end mb-15">
-                            <div class="col-xl-12">
-                                <div class="section-tittle mb-30">
-                                    <h3>Kinh Doanh</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Tab content -->
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Nav Card -->
-                                <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-1" role="tabpanel"
-                                         aria-labelledby="nav-1-tab">
-                                        <div class="row">
-
-
-                                            <div class="col-xl-12">
-                                                <div class="whats-right-single mb-20">
-                                                    <div class="whats-right-img" style="width: 30%">
-                                                        <img src="{% static 'news/assets/img/article/d28fe22e-d9ce-4d93-b6cc-6c079f708d40.jpg' %}"
-                                                             alt="" style="width: 100%; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whats-right-cap" style="width: 70%;">
-                                                        <h4 style="font-size: 22px;"><a
-                                                                href="/chieu-lua-sau-rieng-gia-re-35000-dong-mot-kg-a27.html">Chiêu
-                                                            lừa &#x27;sầu riêng giá rẻ 35.000 đồng một
-                                                            kg&#x27;</a></h4>
-
-                                                        <p>
-                                                        <p>Tương tự, tại fanpage "Vựa Tr&aacute;i C&acirc;y Tuấn Anh
-                                                            (Bến Tre)", ngo&agrave;i đảm bảo mua số lượng "bao
-                                                            nhi&ecirc;u cũng c&oacute;", họ c&ograve;n cam kết bao
-                                                            h&agrave;ng cho kh&aacute;ch với điều kiện kh&aacute;ch
-                                                            phải chu…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-12">
-                                                <div class="whats-right-single mb-20">
-                                                    <div class="whats-right-img" style="width: 30%">
-                                                        <img src="{% static 'news/assets/img/article/b87a241f-5436-4976-9021-eeb2082f3283.jpg' %}"
-                                                             alt="" style="width: 100%; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whats-right-cap" style="width: 70%;">
-                                                        <h4 style="font-size: 22px;"><a
-                                                                href="/viet-nam-co-hon-7-trieu-tai-khoan-chung-khoan-a26.html">Việt
-                                                            Nam có hơn 7 triệu tài khoản chứng khoán</a></h4>
-
-                                                        <p>
-                                                        <p>Theo số liệu của Trung t&acirc;m Lưu k&yacute; chứng
-                                                            kho&aacute;n Việt Nam (VSD), nh&agrave; đầu tư trong
-                                                            v&agrave; ngo&agrave;i nước đăng k&yacute; gần 40.000
-                                                            t&agrave;i khoản trong th&aacute;ng 3, đưa quy m&ocirc;
-                                                            t&agrave;i k…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-12">
-                                                <div class="whats-right-single mb-20">
-                                                    <div class="whats-right-img" style="width: 30%">
-                                                        <img src="{% static 'news/assets/img/article/bfab1bf4-a659-4e1e-a3e7-f65cd3754ac7.jpg' %}"
-                                                             alt="" style="width: 100%; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whats-right-cap" style="width: 70%;">
-                                                        <h4 style="font-size: 22px;"><a
-                                                                href="/nga-giam-san-luong-dau-700000-thung-moi-ngay-a25.html">Nga
-                                                            giảm sản lượng dầu 700.000 thùng mỗi ngày</a></h4>
-
-                                                        <p>
-                                                        <p>Theo dữ liệu của Bộ Năng lượng Nga m&agrave; Bloomberg
-                                                            c&oacute; được, nước n&agrave;y bơm trung b&igrave;nh
-                                                            1,285 triệu tấn dầu th&ocirc; mỗi ng&agrave;y trong
-                                                            th&aacute;ng 3, tương đương 9,4 triệu th&ugrave;ng dầu
-                                                            mỗi ng&agrav…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-12">
-                                                <div class="whats-right-single mb-20">
-                                                    <div class="whats-right-img" style="width: 30%">
-                                                        <img src="{% static 'news/assets/img/article/4d7012c8-c7e1-467e-b89b-81a04812165d.jpg' %}"
-                                                             alt="" style="width: 100%; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whats-right-cap" style="width: 70%;">
-                                                        <h4 style="font-size: 22px;"><a
-                                                                href="/goi-120000-ty-se-tac-dong-gi-den-thi-truong-dia-oc-a24.html">Gói
-                                                            120.000 tỷ sẽ tác động gì đến thị trường địa ốc?</a>
-                                                        </h4>
-
-                                                        <p>
-                                                        <p>Đầu th&aacute;ng 4, Thủ tướng đ&atilde; ph&ecirc; duyệt
-                                                            đề &aacute;n x&acirc;y dựng &iacute;t nhất một triệu
-                                                            nh&agrave; ở x&atilde; hội cho người thu nhập thấp từ
-                                                            nay đến năm 2030 (trong đ&oacute; đến năm 2025
-                                                            ho&agrave;n th&agr…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
+                    {% for item in items_category %}
+                        <div class="whats-news-wrapper mb-5">
+                            <!-- Heading & Nav Button -->
+                            <div class="row justify-content-between align-items-end mb-15">
+                                <div class="col-xl-12">
+                                    <div class="section-tittle mb-30">
+                                        <h3>{{ item.name }}</h3>
                                     </div>
                                 </div>
-                                <!-- End Nav Card -->
                             </div>
-                        </div>
-                    </div>
+                            <!-- Tab content -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Nav Card -->
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-1" role="tabpanel"
+                                             aria-labelledby="nav-1-tab">
+                                            <div class="row">
 
-                    <div class="whats-news-wrapper mb-5">
-                        <!-- Heading & Nav Button -->
-                        <div class="row justify-content-between align-items-end mb-15">
-                            <div class="col-xl-12">
-                                <div class="section-tittle mb-30">
-                                    <h3>Thể Thao</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Tab content -->
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Nav Card -->
-                                <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-2" role="tabpanel"
-                                         aria-labelledby="nav-2-tab">
-                                        <div class="row">
+                                                {% if item.layout == "list" %}
+                                                    {% for itemChild in item.article_filter|slice:":4" %}
+                                                        <div class="col-xl-12">
+                                                            <div class="whats-right-single mb-20">
+                                                                <div class="whats-right-img" style="width: 30%">
+                                                                    <img src="{{ itemChild.image.url }}"
+                                                                         alt="" style="width: 100%; object-fit: cover;">
+                                                                </div>
+                                                                <div class="whats-right-cap" style="width: 70%;">
+                                                                    <h4 style="font-size: 22px;"><a
+                                                                            href="{{ itemChild.get_absolute_url }}">{{ itemChild.name }}</a>
+                                                                    </h4>
+                                                                    <p>
+                                                                        {{ itemChild.content|safe|truncatechars:180 }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
 
+                                                {% else %}
+                                                    {% for itemChild in item.article_filter|slice:":4" %}
+                                                        <div class="col-xl-6 col-lg-12">
+                                                            <div class="whats-news-single mb-40 mb-40">
+                                                                <div class="whates-img">
+                                                                    <img src="{{ itemChild.image.url }}"
+                                                                         alt=""
+                                                                         style="height: 200px; object-fit: cover;">
+                                                                </div>
+                                                                <div class="whates-caption">
+                                                                    <h4><a
+                                                                            href="{{ itemChild.get_absolute_url }}">T{{ itemChild.name }}</a>
+                                                                    </h4>
 
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/238b870f-be88-4d61-8c0a-a42a31b98e9e.jpg' %}"
-                                                             alt="" style="height: 200px; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/tottenham-thang-brighton-gay-tranh-cai-a31.html">Tottenham
-                                                            thắng Brighton gây tranh cãi</a></h4>
+                                                                    <p>
+                                                                        {{ itemChild.content|safe|truncatechars:180 }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endif %}
 
-                                                        <p>
-                                                        <p>Son Heung-min v&agrave; Harry Kane c&ugrave;ng ghi
-                                                            b&agrave;n, nhưng trọng t&agrave;i Stuart Attwell
-                                                            l&agrave; t&acirc;m điểm trận đấu khi &ocirc;ng từ ch…
-                                                        </p>
-                                                    </div>
-                                                </div>
                                             </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/21a85e8f-68a4-48b8-b8fc-f2034f20d6cc.jpg' %}"
-                                                             alt="" style="height: 200px; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/hlv-doi-thu-thua-nhan-djokovic-vo-doi-a30.html">HLV
-                                                            đối thủ thừa nhận Djokovic vô đối</a></h4>
-
-                                                        <p>
-                                                        <p>Theo Stine - người c&ograve;n từng dẫn dắt cựu số một thế
-                                                            giới Jim Courier, Djokovic trội hơn Rafael Nadal ở thời
-                                                            điểm n&agrave;y. &Ocirc;ng n&oacute;i: "…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/e2416f5b-0a89-4e0e-a96a-e3cb9aa2d910.jpg' %}"
-                                                             alt="" style="height: 200px; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/liverpool-hoa-arsenal-du-bi-dan-hai-ban-a29.html">Liverpool
-                                                            hoà Arsenal dù bị dẫn hai bàn</a></h4>
-
-                                                        <p>
-                                                        <p>Cựu hậu vệ Micah Richards n&oacute;i rằng đ&acirc;y
-                                                            l&agrave; trận cầu hay bậc nhất anh từng xem, v&agrave;
-                                                            truyền th&ocirc;ng Anh cũng chung quan điểm. T…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img src="{% static 'news/assets/img/article/5027e550-e765-4a21-9b04-23dca9b303da.jpg' %}"
-                                                             alt="" style="height: 200px; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4><a
-                                                                href="/ronaldo-khong-bat-tay-hlv-al-nassr-sau-tran-hoa-a28.html">Ronaldo
-                                                            không bắt tay HLV Al Nassr sau trận hoà</a></h4>
-
-                                                        <p>
-                                                        <p>Đội trưởng Cristiano Ronaldo c&atilde;i nhau với đối thủ,
-                                                            rồi đi thẳng v&agrave;o đường hầm m&agrave; kh&ocirc;ng
-                                                            bắt tay HLV Rudi Garcia, khi Al Nassr ho…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
                                         </div>
                                     </div>
-                                </div>
-                                <!-- End Nav Card -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="whats-news-wrapper mb-5">
-                        <!-- Heading & Nav Button -->
-                        <div class="row justify-content-between align-items-end mb-15">
-                            <div class="col-xl-12">
-                                <div class="section-tittle mb-30">
-                                    <h3>Khoa Học</h3>
+                                    <!-- End Nav Card -->
                                 </div>
                             </div>
                         </div>
-                        <!-- Tab content -->
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Nav Card -->
-                                <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-3" role="tabpanel"
-                                         aria-labelledby="nav-3-tab">
-                                        <div class="row">
-
-
-                                            <div class="col-xl-12">
-                                                <div class="whats-right-single mb-20">
-                                                    <div class="whats-right-img" style="width: 30%">
-                                                        <img src="news/assets/img/article/05141964-e265-4de4-be4a-17176801fb99.jpg"
-                                                             alt="" style="width: 100%; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whats-right-cap" style="width: 70%;">
-                                                        <h4 style="font-size: 22px;"><a
-                                                                href="/tran-dong-dat-tung-lam-lech-truc-trai-dat-a35.html">Trận
-                                                            động đất từng làm lệch trục Trái Đất</a></h4>
-
-                                                        <p>
-                                                        <p>Trận động đất mạnh nhất trong lịch sử Nhật Bản khiến trục
-                                                            Tr&aacute;i Đất lệch khoảng 17 cm v&agrave; c&oacute;
-                                                            thể khiến h&ograve;n đảo ch&iacute;nh x&ecirc; dịch
-                                                            khoảng 2,4 m. Giống như c&aacute;c trận động đất lớn
-                                                            tương tự kh…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-12">
-                                                <div class="whats-right-single mb-20">
-                                                    <div class="whats-right-img" style="width: 30%">
-                                                        <img src="news/assets/img/article/6486ea94-8f4e-4d74-8cc4-9f9dfe5f227a.jpg"
-                                                             alt="" style="width: 100%; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whats-right-cap" style="width: 70%;">
-                                                        <h4 style="font-size: 22px;"><a
-                                                                href="/toa-nha-go-10-tang-co-the-chiu-dong-dat-a34.html">Tòa
-                                                            nhà gỗ 10 tầng có thể chịu động đất</a></h4>
-
-                                                        <p>
-                                                        <p>Trong gần hai thập kỷ, Đại học California San Diego sở
-                                                            hữu một c&ocirc;ng cụ quan trọng để hiểu r&otilde; động
-                                                            đất. Đ&oacute; l&agrave; gi&agrave;n th&eacute;p 12,1 x
-                                                            7,6 m, sử dụng hệ thống thủy lực để m&ocirc; phỏng
-                                                            chuyển độn…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-12">
-                                                <div class="whats-right-single mb-20">
-                                                    <div class="whats-right-img" style="width: 30%">
-                                                        <img src="news/assets/img/article/af131eb3-b133-4944-b333-6b4e841ddd17.jpg"
-                                                             alt="" style="width: 100%; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whats-right-cap" style="width: 70%;">
-                                                        <h4 style="font-size: 22px;"><a
-                                                                href="/nui-co-the-moc-cao-toi-dau-tren-trai-dat-a33.html">Núi
-                                                            có thể mọc cao tới đâu trên Trái Đất?</a></h4>
-
-                                                        <p>
-                                                        <p>C&aacute;ch đ&acirc;y 60 triệu năm, khi mảng kiến tạo
-                                                            &Aacute; &Acirc;u đ&acirc;m v&agrave;o mảng kiến tạo Ấn
-                                                            Độ, một d&atilde;y n&uacute;i h&igrave;nh th&agrave;nh.
-                                                            Do những mảng kiến tạo n&agrave;y c&oacute; mật độ tương
-                                                            đồng …</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-xl-12">
-                                                <div class="whats-right-single mb-20">
-                                                    <div class="whats-right-img" style="width: 30%">
-                                                        <img src="news/assets/img/article/595c35ad-dd85-4d8c-9939-2ed7098053b1.jpg"
-                                                             alt="" style="width: 100%; object-fit: cover;">
-                                                    </div>
-                                                    <div class="whats-right-cap" style="width: 70%;">
-                                                        <h4 style="font-size: 22px;"><a
-                                                                href="/ca-voi-khong-lo-lien-tuc-chet-dat-vao-dao-bali-a32.html">Cá
-                                                            voi khổng lồ liên tục chết dạt vào đảo Bali</a></h4>
-
-                                                        <p>
-                                                        <p>Chỉ trong hơn một tuần, x&aacute;c của ba con c&aacute;
-                                                            voi đ&atilde; được t&igrave;m thấy chết tr&ecirc;n
-                                                            c&aacute;c b&atilde;i biển ở Bali, giới chức
-                                                            tr&aacute;ch h&ocirc;m 9/4 cho biết. Sinh vật đầu
-                                                            ti&ecirc;n l&agrave; một c…</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Nav Card -->
-                            </div>
-                        </div>
-                    </div>
-
+                    {% endfor %}
                 </div>
-                <div class="col-lg-4">
-                    {% include 'elements/sidebar.html' %}
-                </div>
+            </div>
+
+            <div class="col-lg-4">
+                {% include 'elements/sidebar.html' %}
             </div>
         </div>
     </section>

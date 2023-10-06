@@ -6,7 +6,7 @@
         <div class="row justify-content-between align-items-end mb-15">
             <div class="col-xl-4">
                 <div class="section-tittle mb-30 ml-2">
-                    <h3>Thể Thao</h3>
+                    <h3>{{ item_category.name }}</h3>
                 </div>
             </div>
         </div>
@@ -20,166 +20,56 @@
                          aria-labelledby="nav-home-tab">
                         <div class="row">
 
+                            {% if items_article|length > 0 %}
+                                {% if item_category.layout == "list" %}
+                                    {% for item in items_article %}
+                                        <div class="col-xl-12">
+                                            <div class="whats-news-single mb-40 mb-40 d-flex">
+                                                <div class="whates-img" style="width: 35%">
+                                                    <img src="{{ item.image.url }}" alt=""
+                                                         style="object-fit: cover; height: 100%;">
+                                                </div>
+                                                <div class="whates-caption whates-caption2"
+                                                     style="width: 75%; margin-left: 30px">
+                                                    <h4>
+                                                        {# get_absolute_url --> hàm lấy trong model của Article --> trả về giá trị slug #}
+                                                        <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                                                    </h4>
+                                                    <span>by Admin - {{ item.publish_date | date:"d/m/Y" }}</span>
+                                                    <p>
+                                                        {# safe --> dùng để đổ HTML ra giao diện nếu ko dùng sẽ đổ dạng thẻ #}
+                                                        {# truncatechars --> cắt 200 ký tự đầu văn bản #}
+                                                    <p>{{ item.content | safe | truncatechars:200 }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for item in items_article %}
+                                        <div class="col-xl-6 col-lg-12">
+                                            <div class="whats-news-single mb-40 mb-40">
+                                                <div class="whates-img">
+                                                    <img src="{{ item.image.url }}" alt="" style="height: 200px;">
+                                                </div>
+                                                <div class="whates-caption">
+                                                    <h4>
+                                                        {# get_absolute_url --> hàm lấy trong model của Article --> trả về giá trị slug #}
+                                                        <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                                                    </h4>
+                                                    <span>by Admin - {{ item.publish_date | date:"d/m/Y" }}</span>
+                                                    <p>
+                                                        {# safe --> dùng để đổ HTML ra giao diện nếu ko dùng sẽ đổ dạng thẻ #}
+                                                        {# truncatechars --> cắt 200 ký tự đầu văn bản #}
+                                                    <p>{{ item.content | safe | truncatechars:200 }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
 
-                            <div class="col-xl-6 col-lg-12">
-                                <div class="whats-news-single mb-40 mb-40">
-                                    <div class="whates-img">
-                                        <img src="{% static 'news/assets/img/article/238b870f-be88-4d61-8c0a-a42a31b98e9e.jpg' %}"
-                                             alt="" style="height: 200px;">
-                                    </div>
-                                    <div class="whates-caption">
-                                        <h4><a
-                                                href="/tottenham-thang-brighton-gay-tranh-cai-a31.html">Tottenham
-                                            thắng Brighton gây tranh cãi</a></h4>
-                                        <span>by Admin - Apr 10, 2023</span>
-                                        <p>
-                                        <p>Son Heung-min v&agrave; Harry Kane c&ugrave;ng ghi
-                                            b&agrave;n, nhưng trọng t&agrave;i Stuart Attwell
-                                            l&agrave; t&acirc;m điểm trận đấu khi &ocirc;ng từ…</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-lg-12">
-                                <div class="whats-news-single mb-40 mb-40">
-                                    <div class="whates-img">
-                                        <img src="{% static 'news/assets/img/article/21a85e8f-68a4-48b8-b8fc-f2034f20d6cc.jpg' %}"
-                                             alt="" style="height: 200px;">
-                                    </div>
-                                    <div class="whates-caption">
-                                        <h4><a
-                                                href="/hlv-doi-thu-thua-nhan-djokovic-vo-doi-a30.html">HLV
-                                            đối thủ thừa nhận Djokovic vô đối</a></h4>
-                                        <span>by Admin - Apr 10, 2023</span>
-                                        <p>
-                                        <p>Theo Stine - người c&ograve;n từng dẫn dắt cựu số một thế
-                                            giới Jim Courier, Djokovic trội hơn Rafael Nadal ở thời
-                                            điểm n&agrave;y. &Ocirc;ng n&oacute;i…</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-lg-12">
-                                <div class="whats-news-single mb-40 mb-40">
-                                    <div class="whates-img">
-                                        <img src="{% static 'news/assets/img/article/e2416f5b-0a89-4e0e-a96a-e3cb9aa2d910.jpg' %}"
-                                             alt="" style="height: 200px;">
-                                    </div>
-                                    <div class="whates-caption">
-                                        <h4><a
-                                                href="/liverpool-hoa-arsenal-du-bi-dan-hai-ban-a29.html">Liverpool
-                                            hoà Arsenal dù bị dẫn hai bàn</a></h4>
-                                        <span>by Admin - Apr 10, 2023</span>
-                                        <p>
-                                        <p>Cựu hậu vệ Micah Richards n&oacute;i rằng đ&acirc;y
-                                            l&agrave; trận cầu hay bậc nhất anh từng xem, v&agrave;
-                                            truyền th&ocirc;ng Anh cũng chung quan điểm…</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-lg-12">
-                                <div class="whats-news-single mb-40 mb-40">
-                                    <div class="whates-img">
-                                        <img src="{% static 'news/assets/img/article/5027e550-e765-4a21-9b04-23dca9b303da.jpg' %}"
-                                             alt="" style="height: 200px;">
-                                    </div>
-                                    <div class="whates-caption">
-                                        <h4><a
-                                                href="/ronaldo-khong-bat-tay-hlv-al-nassr-sau-tran-hoa-a28.html">Ronaldo
-                                            không bắt tay HLV Al Nassr sau trận hoà</a></h4>
-                                        <span>by Admin - Apr 10, 2023</span>
-                                        <p>
-                                        <p>Đội trưởng Cristiano Ronaldo c&atilde;i nhau với đối thủ,
-                                            rồi đi thẳng v&agrave;o đường hầm m&agrave; kh&ocirc;ng
-                                            bắt tay HLV Rudi Garcia, khi Al Nassr…</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-lg-12">
-                                <div class="whats-news-single mb-40 mb-40">
-                                    <div class="whates-img">
-                                        <img src="{% static 'news/assets/img/article/5f147ede-afad-4461-a66f-4d7ba9b55cc5.png' %}"
-                                             alt="" style="height: 200px;">
-                                    </div>
-                                    <div class="whates-caption">
-                                        <h4><a href="/man-utd-tro-lai-top-4-a15.html">Man Utd trở
-                                            lại Top 4</a></h4>
-                                        <span>by Admin - Apr 06, 2023</span>
-                                        <p>
-                                        <p>Man Utd dứt chuỗi ba trận kh&ocirc;ng ghi b&agrave;n với
-                                            chiến thắng 1-0 trước đội kh&aacute;ch Brentford, ở trận
-                                            b&ugrave; v&ograve;ng 25 Ngoại hạng A…</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-lg-12">
-                                <div class="whats-news-single mb-40 mb-40">
-                                    <div class="whates-img">
-                                        <img src="{% static 'news/assets/img/article/d41a1080-6298-4ce2-8cad-2aa6d365e64a.png' %}"
-                                             alt="" style="height: 200px;">
-                                    </div>
-                                    <div class="whates-caption">
-                                        <h4><a
-                                                href="/quang-liem-tai-dau-carlsen-o-champions-chess-tour-a14.html">Quang
-                                            Liêm tái đấu Carlsen ở Champions Chess Tour</a></h4>
-                                        <span>by Admin - Apr 06, 2023</span>
-                                        <p>
-                                        <p>C&ugrave;ng thất bại ở tứ kết Chessable Masters
-                                            s&aacute;ng 4/4, n&ecirc;n L&ecirc; Quang Li&ecirc;m
-                                            v&agrave; kỳ thủ số một thế giới Magnus Carlsen sẽ…</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-lg-12">
-                                <div class="whats-news-single mb-40 mb-40">
-                                    <div class="whates-img">
-                                        <img src="{% static 'news/assets/img/article/3b87b8db-9f11-40f8-95bf-c252b208333d.jpg' %}"
-                                             alt="" style="height: 200px;">
-                                    </div>
-                                    <div class="whates-caption">
-                                        <h4><a
-                                                href="/barca-tim-nha-tai-tro-tra-luong-cho-messi-a13.html">Barca
-                                            tìm nhà tài trợ trả lương cho Messi</a></h4>
-                                        <span>by Admin - Apr 06, 2023</span>
-                                        <p>
-                                        <p>Barca đang t&igrave;m kiếm một số đối t&aacute;c
-                                            t&agrave;i trợ để hậu thuẫn cho thương vụ đưa ng&ocirc;i
-                                            sao Lionel Messi trở lại Camp Nou h&egrave; 2…</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-lg-12">
-                                <div class="whats-news-single mb-40 mb-40">
-                                    <div class="whates-img">
-                                        <img src="{% static 'news/assets/img/article/dba0d5e1-8b8b-4fc4-9284-6d2f5c20648e.jpg' %}"
-                                             alt="" style="height: 200px;">
-                                    </div>
-                                    <div class="whates-caption">
-                                        <h4><a
-                                                href="/hlv-troussier-khong-bat-ngo-ve-ket-qua-boc-tham-a12.html">HLV
-                                            Troussier không bất ngờ về kết quả bốc thăm</a></h4>
-                                        <span>by Admin - Apr 06, 2023</span>
-                                        <p>
-                                        <p>HLV Philippe Troussier c&ugrave;ng ban huấn luyện U22
-                                            Việt Nam đ&atilde; dự đo&aacute;n về kết quả bốc thăm
-                                            chia bảng SEA Games 32, v&agrave; l&ecirc;n…</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                            {% else %}
+                                <p class="col-12 ml-2"> Chưa có bài viết </p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -196,21 +86,34 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-start">
 
+                                {# Phân trang #}
+                                {% if items_article.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ items_article.previous_page_number }}">
+                                            <i class="fas fa-arrow-left text-primary"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
 
-                                <li class="page-item active"><a class="page-link" href="#">1</a>
-                                </li>
+                                {% for page in paginator.page_range %}
+                                    {# items_article.number --> biến để lấy trang hiện tại#}
+                                    {% if page == items_article.number %}
+                                        <li class="page-item active"><a class="page-link" href="#">{{ page }}</a></li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
 
-
-                                <li class="page-item"><a class="page-link"
-                                                         href="/the-thao.html?page=2">2</a></li>
-
-
-                                <li class="page-item">
-                                    <a class="page-link" href="/the-thao.html?page=2">
-                                        <i class="fas fa-arrow-right text-primary"></i>
-                                    </a>
-                                </li>
-
+                                {% if items_article.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ items_article.next_page_number }}">
+                                            <i class="fas fa-arrow-right text-primary"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {# Phân trang #}
                             </ul>
                         </nav>
                     </div>

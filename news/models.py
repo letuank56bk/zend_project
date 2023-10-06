@@ -1,5 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
+from django.urls import reverse
 
 # Import tất cả các function từ file helper
 from .helpers import *
@@ -49,6 +50,10 @@ class Article(models.Model):
     # Thay đổi thông tin trả về trong phần thông báo trang admin
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        # article_slug --> lấy bên url của article
+        return reverse("article", kwargs={"article_slug": self.slug})
 
 
 class Feed(models.Model):

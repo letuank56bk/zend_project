@@ -27,9 +27,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
     # list_display --> danh sách các cột sẽ hiển thị trong view admin
-    list_display = ('name', 'status', 'ordering', 'special', 'publish_date', 'image')
+    list_display = ('name', 'category', 'status', 'ordering', 'special', 'publish_date')
     # list_filter --> tạo bộ lọc với các trường được liệt kê
-    list_filter = ['status', 'special']
+    list_filter = ['status', 'category', 'special']
     # search_fields --> tạo thêm ô tìm kiếm theo cột name
     search_fields = ['name']
 
