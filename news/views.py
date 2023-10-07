@@ -80,4 +80,22 @@ def feed(request):
 
 
 def search(request):
-    return render(request, 'pages/search.html', {})
+    keyword = request.GET.get("keyword")
+
+    # name__iregex: tìm kiếm keyword trong cột name, không phân biệt hoa thường
+    items_article = Article.objects.filter(name__iregex=keyword, status="published",
+                                           publish_date__lte=timezone.now()).order_by("-publish_date")
+
+    # Phân trang
+    # --> Phân items_article thành các trang (2 items / 1 trang)
+    # --> nhận số page từ phía client
+    # --> lấy thông tin items_article dựa vào số page gửi lên từ clientv
+    paginator = Paginator(items_article, 2)
+    page = request.GET.get("page")
+    items_article = paginator.get_page(page)
+
+    return render(request, 'pages/search.html', {
+        "items_article": items_article,
+        "keyword": keyword,
+        "paginator": paginator
+    })

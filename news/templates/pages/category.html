@@ -78,48 +78,51 @@
         </div>
     </div>
     <!--Start pagination -->
-    <div class="pagination-area  gray-bg pb-45 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="single-wrap">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-start">
+    {% if paginator.num_pages >= 2 %}
+        <div class="pagination-area  gray-bg pb-45 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single-wrap">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-start">
 
-                                {# Phân trang #}
-                                {% if items_article.has_previous %}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{ items_article.previous_page_number }}">
-                                            <i class="fas fa-arrow-left text-primary"></i>
-                                        </a>
-                                    </li>
-                                {% endif %}
-
-                                {% for page in paginator.page_range %}
-                                    {# items_article.number --> biến để lấy trang hiện tại#}
-                                    {% if page == items_article.number %}
-                                        <li class="page-item active"><a class="page-link" href="#">{{ page }}</a></li>
-                                    {% else %}
+                                    {# Phân trang #}
+                                    {% if items_article.has_previous %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                            <a class="page-link" href="?page={{ items_article.previous_page_number }}">
+                                                <i class="fas fa-arrow-left text-primary"></i>
+                                            </a>
                                         </li>
                                     {% endif %}
-                                {% endfor %}
 
-                                {% if items_article.has_next %}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{ items_article.next_page_number }}">
-                                            <i class="fas fa-arrow-right text-primary"></i>
-                                        </a>
-                                    </li>
-                                {% endif %}
-                                {# Phân trang #}
-                            </ul>
-                        </nav>
+                                    {% for page in paginator.page_range %}
+                                        {# items_article.number --> biến để lấy trang hiện tại#}
+                                        {% if page == items_article.number %}
+                                            <li class="page-item active"><a class="page-link" href="#">{{ page }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if items_article.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ items_article.next_page_number }}">
+                                                <i class="fas fa-arrow-right text-primary"></i>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {# Phân trang #}
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% endif %}
     <!-- End pagination  -->
 {% endblock %}
