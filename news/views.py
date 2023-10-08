@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
@@ -83,7 +85,9 @@ def search(request):
     keyword = request.GET.get("keyword")
 
     # name__iregex: tìm kiếm keyword trong cột name, không phân biệt hoa thường
-    items_article = Article.objects.filter(name__iregex=keyword, status="published",
+    # re.escape: tăng tính an toàn đối với dữ liệu phía người dùng nhập vào
+    # --> Tham khảo: https://manhhomienbienthuy.github.io/2016/11/23/vai-lo-hong-thuong-gap-va-cach-phong-chong-trong-django.html
+    items_article = Article.objects.filter(name__iregex=re.escape(keyword), status="published",
                                            publish_date__lte=timezone.now()).order_by("-publish_date")
 
     # Phân trang

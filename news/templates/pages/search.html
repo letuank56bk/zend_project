@@ -1,5 +1,7 @@
 {% extends "layout-sidebar.html" %}
 {% load static %}
+{# Load hàm tự định nghĩa trong file teplatetags/highlight #}
+{% load highlight %}
 {% block content %}
 
     <div class="whats-news-wrapper">
@@ -29,10 +31,11 @@
                                                  alt="" style="height: 100%; object-fit: cover;">
                                         </div>
                                         <div class="whates-caption whates-caption2">
-
-                                            <h4><a href="{{ item.get_absolute_url }}">
-                                                <span class="highlight"> {{ item.name }} </span>
-                                            </a></h4>
+                                            {# Sử dụng hàm tự định nghĩa highlight để bôi vàng từ khóa trong kết quả tìm kiếm trả về #}
+                                            {# Input: item.name --> output: item.name đã bôi vàng từ khóa keyword #}
+                                            <h4>
+                                                <a href="{{ item.get_absolute_url }}"> {{ item.name|highlight:keyword }} </a>
+                                            </h4>
                                             <span>by Admin - {{ item.publish_date|date:"d/m/Y" }}</span>
                                             <p>
                                                 {# safe --> dùng để đổ HTML ra giao diện nếu ko dùng sẽ đổ dạng thẻ #}
@@ -63,7 +66,8 @@
                                     {# Phân trang #}
                                     {% if items_article.has_previous %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?keyword={{ keyword }}&page={{ items_article.previous_page_number }}">
+                                            <a class="page-link"
+                                               href="?keyword={{ keyword }}&page={{ items_article.previous_page_number }}">
                                                 <i class="fas fa-arrow-left text-primary"></i>
                                             </a>
                                         </li>
@@ -84,7 +88,8 @@
 
                                     {% if items_article.has_next %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?keyword={{ keyword }}&page={{ items_article.next_page_number }}">
+                                            <a class="page-link"
+                                               href="?keyword={{ keyword }}&page={{ items_article.next_page_number }}">
                                                 <i class="fas fa-arrow-right text-primary"></i>
                                             </a>
                                         </li>
