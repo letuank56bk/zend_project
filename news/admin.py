@@ -43,7 +43,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 class FeedAdmin(admin.ModelAdmin):
     # list_display --> danh sách các cột sẽ hiển thị trong view admin
-    list_display = ('name', 'status', 'ordering', 'link')
+    list_display = ('name', 'slug', 'status', 'ordering', 'link')
     # list_filter --> tạo bộ lọc với các trường được liệt kê
     list_filter = ['status']
     # search_fields --> tạo thêm ô tìm kiếm theo cột name

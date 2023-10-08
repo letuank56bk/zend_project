@@ -1,16 +1,18 @@
 import re
-
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-
 # Import các model
-from .models import Category, Article
-
+from .models import Category, Article, Feed
 # Thư viện xử lý về thời gian
 from django.utils import timezone
-
 # Chức năng xử lý phân trang
 from django.core.paginator import Paginator
+# Thư viện dùng để xử lý RSS
+import feedparser
+# Thư viện json
+import json
+# Thư viện BeautifulSoup --> Dùng để phân tích cú pháp HTML/ XML, giúp cho việc trích xuất thông tin dễ dàng hơn
+from bs4 import BeautifulSoup
 
 
 # Create your views here.
@@ -77,8 +79,51 @@ def article(request, article_slug):
     })
 
 
-def feed(request):
-    return render(request, 'pages/feed.html', {})
+def feed(request, feed_slug):
+    # Để sự dụng được tính năng của RSS, cần import thư viện feedparser
+    # --> pip install feedparser
+    # Tìm kiếm trong DB, nếu có trả ra thông tin, nếu không phản hồi lại 404
+    item_feed = get_object_or_404(Feed, slug=feed_slug, status="published")
+    feed = feedparser.parse(item_feed.link)
+
+    # Khởi tạo mảng rỗng items_feed
+    items_feed = []
+
+    for entry in feed.entries:
+        # Sử dụng thư viện BeautifulSoup để phân tích cụm dữ liệu summary dưới dạng HTML
+        # -> tìm kiểm thẻ img trong soup sau đó gán vào biến img_tag
+        # --> khởi tạo biến src_img --> nếu img_tag khác rỗng, gán biến src_img là phân src của img_tag
+        soup = BeautifulSoup(entry.summary, 'html.parser')
+        img_tag = soup.find('img')
+
+        # Đặt hình ảnh mặc định cho bài viết, phòng trường hợp RSS của bài viết không có hình ảnh
+        src_img = "/media/news/images/feed/no-image.png"
+        # Nếu bài viết có hình ảnh, sử dụng hình ảnh của bài viết
+        if img_tag:
+            src_img = img_tag["src"]
+
+        item = {
+            "title": entry.title,
+            "link": entry.link,
+            "pub_date": entry.published,
+            "img": src_img,
+        }
+        # Thêm item vào trong mảng items_feed
+        items_feed.append(item)
+
+    # Kiểm tra dạng dữ liệu JSON sau khi parse, chỉ dùng khi muốn xem các trường để dev, khi chạy không cần thiết
+    # Ghi dữ liệu RSS sau khi parse vào 1 file json
+    # encoding='utf-8' --> encode dưới dạng utf-8 (tiếng việt) tránh trường hợp lỗi tiếng việt khi ghi vào file json
+    # ensure_ascii=False --> Không mã hóa khi ghi vào file
+    #####################################################
+    with open('feed.json', 'w', encoding='utf-8') as f:
+        json.dump(feed, f, ensure_ascii=False)
+    #####################################################
+
+    return render(request, 'pages/feed.html', {
+        "item_feed": item_feed,
+        "items_feed": items_feed,
+    })
 
 
 def search(request):

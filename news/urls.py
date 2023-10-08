@@ -7,7 +7,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("category/<slug:category_slug>", views.category, name="category"),
     path("article/<slug:article_slug>", views.article, name="article"),
-    path("feed", views.feed, name="feed"),
+    path("feed/<slug:feed_slug>", views.feed, name="feed"),
     path("search", views.search, name="search"),
 
     # Thư viên tinymce --> trình biên soạn HTML
