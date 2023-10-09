@@ -30,6 +30,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        # category_slug --> là phần slug ở bên views, phần này sẽ được truyền giá trị slug đã nhập trong DB
+        return reverse("category", kwargs={"category_slug": self.slug})
+
 
 class Article(models.Model):
     name = models.CharField(unique=True, max_length=100)
@@ -52,7 +56,7 @@ class Article(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        # article_slug --> lấy bên url của article
+        # article_slug --> là phần slug ở bên views, phần này sẽ được truyền giá trị slug đã nhập trong DB
         return reverse("article", kwargs={"article_slug": self.slug})
 
 
@@ -70,3 +74,7 @@ class Feed(models.Model):
     # Thay đổi thông tin trả về trong phần thông báo trang admin
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        # feed_slug --> là phần slug ở bên views, phần này sẽ được truyền giá trị slug đã nhập trong DB
+        return reverse("feed", kwargs={"feed_slug": self.slug})

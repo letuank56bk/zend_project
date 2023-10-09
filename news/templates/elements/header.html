@@ -36,28 +36,29 @@
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="/">Trang Chủ</a></li>
-                                    <li><a href="/about.html">Giới Thiệu</a></li>
-                                    <li><a href="/contact.html">Liên Hệ</a></li>
+                                    <li><a href="{% url "about" %}">Giới Thiệu</a></li>
+                                    <li><a href="{% url "contact" %}">Liên Hệ</a></li>
                                     <li><a href="#">Danh Mục</a>
                                         <ul class="submenu">
 
-                                            <li><a href="/kinh-doanh.html">Kinh Doanh</a></li>
+                                            {% for item in items_category_sidebar_menu %}
+                                                <li><a {% if item_category.name == item.name %}
+                                                    class="text-primary"{% endif %}
+                                                    href="{{ item.get_absolute_url }}">{{ item.name }}</a></li>
+                                            {% endfor %}
 
-                                            <li><a href="/khoa-hoc.html">Khoa Học</a></li>
-
-                                            <li><a class="text-primary" href="/the-thao.html">Thể Thao</a></li>
+                                            {# <li><a class="text-primary" href="/the-thao.html">Thể Thao</a></li> #}
 
                                         </ul>
                                     </li>
+
                                     <li><a href="#">Tin Tổng Hợp</a>
                                         <ul class="submenu">
 
-                                            <li><a href="/tin-tuc-tong-hop-vnexpress.html">Vnexpress</a></li>
-
-                                            <li><a href="/tin-tuc-tong-hop-thanh-nien.html">Thanh Niên</a></li>
-
-                                            <li><a href="/tin-tuc-tong-hop-bao-tin-tuc.html">Báo Tin Tức</a>
-                                            </li>
+                                            {% for item in items_feed_sidebar_menu %}
+                                                <li><a {% if item_feed.name == item.name %}
+                                                    class="text-primary"{% endif %} href="{{ item.get_absolute_url }}"> {{ item.name }} </a></li>
+                                            {% endfor %}
 
                                         </ul>
                                     </li>

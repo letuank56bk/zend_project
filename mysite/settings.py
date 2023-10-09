@@ -67,6 +67,10 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                # Đăng ký hàm lấy dữ liệu category
+                # Hàm này sẽ được tự động chạy mỗi khi người dùng truy cập vào page
+                "news.my_context.items_category_sidebar_menu",
+                "news.my_context.items_feed_sidebar_menu",
             ],
         },
     },
