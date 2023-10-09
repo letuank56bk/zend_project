@@ -71,6 +71,9 @@ TEMPLATES = [
                 # Hàm này sẽ được tự động chạy mỗi khi người dùng truy cập vào page
                 "news.my_context.items_category_sidebar_menu",
                 "news.my_context.items_feed_sidebar_menu",
+                "news.my_context.items_article_sidebar_recent",
+                "news.my_context.items_article_footer_random",
+                "news.my_context.items_article_header_trending",
             ],
         },
     },

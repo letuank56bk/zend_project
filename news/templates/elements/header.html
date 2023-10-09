@@ -8,11 +8,14 @@
                 <div class="col-xl-12">
                     <div class="row d-flex justify-content-between align-items-center">
                         <div class="header-info-left">
-                            <ul>
-                                <li class="title"><span class="flaticon-energy"></span> Tin nóng nhất</li>
-                                <li><a href="/gia-nha-o-cac-nuoc-giau-dang-ra-sao-a8.html">Người đàn ông tìm
-                                    thấy cục đá chứa 2,6 kg vàng</a></li>
-                            </ul>
+                            {% for item in items_article_header_trending %}
+                                <ul>
+                                    <li class="title"><span class="flaticon-energy"></span> Tin nóng nhất</li>
+                                    <li>
+                                        <a href="{{ item.get_absolute_url }}">{{ item.name }}</a>
+                                    </li>
+                                </ul>
+                            {% endfor %}
                         </div>
                         <div class="header-info-right">
                             <ul class="header-date">
@@ -57,7 +60,8 @@
 
                                             {% for item in items_feed_sidebar_menu %}
                                                 <li><a {% if item_feed.name == item.name %}
-                                                    class="text-primary"{% endif %} href="{{ item.get_absolute_url }}"> {{ item.name }} </a></li>
+                                                    class="text-primary"{% endif %}
+                                                    href="{{ item.get_absolute_url }}"> {{ item.name }} </a></li>
                                             {% endfor %}
 
                                         </ul>

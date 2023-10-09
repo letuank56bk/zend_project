@@ -2,59 +2,17 @@
 <aside class="single_sidebar_widget popular_post_widget">
     <h3 class="widget_title">Bài Viết Gần Đây</h3>
 
-    <div class="media post_item">
-        <img src="{% static 'news/assets/img/article/05141964-e265-4de4-be4a-17176801fb99.jpg' %}" alt="post"
-             style="width: 30%;">
-        <div class="media-body">
-            <a href="/tran-dong-dat-tung-lam-lech-truc-trai-dat-a35.html">
-                <h3>Trận động đất từng làm lệch trục Trái Đất</h3>
-            </a>
-            <p></p>
+    {% for item in items_article_sidebar_recent %}
+        <div class="media post_item">
+            <img src="{{ item.image.url }}" alt="post"
+                 style="width: 30%;">
+            <div class="media-body">
+                <a href="{{ item.get_absolute_url }}">
+                    <h3>{{ item.name }}</h3>
+                </a>
+                <p></p>
+            </div>
         </div>
-    </div>
-
-    <div class="media post_item">
-        <img src="{% static 'news/assets/img/article/6486ea94-8f4e-4d74-8cc4-9f9dfe5f227a.jpg' %}" alt="post"
-             style="width: 30%;">
-        <div class="media-body">
-            <a href="/toa-nha-go-10-tang-co-the-chiu-dong-dat-a34.html">
-                <h3>Tòa nhà gỗ 10 tầng có thể chịu động đất</h3>
-            </a>
-            <p></p>
-        </div>
-    </div>
-
-    <div class="media post_item">
-        <img src="{% static 'news/assets/img/article/af131eb3-b133-4944-b333-6b4e841ddd17.jpg' %}" alt="post"
-             style="width: 30%;">
-        <div class="media-body">
-            <a href="/nui-co-the-moc-cao-toi-dau-tren-trai-dat-a33.html">
-                <h3>Núi có thể mọc cao tới đâu trên Trái Đất?</h3>
-            </a>
-            <p></p>
-        </div>
-    </div>
-
-    <div class="media post_item">
-        <img src="{% static 'news/assets/img/article/595c35ad-dd85-4d8c-9939-2ed7098053b1.jpg' %}" alt="post"
-             style="width: 30%;">
-        <div class="media-body">
-            <a href="/ca-voi-khong-lo-lien-tuc-chet-dat-vao-dao-bali-a32.html">
-                <h3>Cá voi khổng lồ liên tục chết dạt vào đảo Bali</h3>
-            </a>
-            <p></p>
-        </div>
-    </div>
-
-    <div class="media post_item">
-        <img src="{% static 'news/assets/img/article/238b870f-be88-4d61-8c0a-a42a31b98e9e.jpg' %}" alt="post"
-             style="width: 30%;">
-        <div class="media-body">
-            <a href="/tottenham-thang-brighton-gay-tranh-cai-a31.html">
-                <h3>Tottenham thắng Brighton gây tranh cãi</h3>
-            </a>
-            <p></p>
-        </div>
-    </div>
+    {% endfor %}
 
 </aside>

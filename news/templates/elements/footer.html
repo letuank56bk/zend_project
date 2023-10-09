@@ -31,44 +31,19 @@
                             <h4>Bài Viết Ngẫu Nhiên</h4>
                         </div>
 
-                        <!-- Popular post -->
-                        <div class="whats-right-single mb-20">
-                            <div class="whats-right-img" style="width: 30%;">
-                                <img src="{% static 'news/assets/img/article/b87a241f-5436-4976-9021-eeb2082f3283.jpg' %}"
-                                     alt="Việt Nam có hơn 7 triệu tài khoản chứng khoán" style="width: 100%;">
+                        {% for item in items_article_footer_random %}
+                            <!-- Popular post -->
+                            <div class="whats-right-single mb-20">
+                                <div class="whats-right-img" style="width: 30%;">
+                                    <img src="{{ item.image.url }}"
+                                         alt="{{ item.name }}" style="width: 100%;">
+                                </div>
+                                <div class="whats-right-cap" style="width: 70%;">
+                                    <h4><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h4>
+                                    <p>Admin | {{ item.publish_date | date:"d/m/Y" }}</p>
+                                </div>
                             </div>
-                            <div class="whats-right-cap" style="width: 70%;">
-                                <h4><a href="/viet-nam-co-hon-7-trieu-tai-khoan-chung-khoan-a26.html">Việt Nam
-                                    có hơn 7 triệu tài khoản chứng khoán</a></h4>
-                                <p>Admin | Apr 10, 2023</p>
-                            </div>
-                        </div>
-
-                        <!-- Popular post -->
-                        <div class="whats-right-single mb-20">
-                            <div class="whats-right-img" style="width: 30%;">
-                                <img src="{% static 'news/assets/img/article/847b63c5-be92-4895-a941-2c171a7390e5.jpg' %}"
-                                     alt="Siêu lợn lan khắp Canada" style="width: 100%;">
-                            </div>
-                            <div class="whats-right-cap" style="width: 70%;">
-                                <h4><a href="/sieu-lon-lan-khap-canada-a16.html">Siêu lợn lan khắp Canada</a>
-                                </h4>
-                                <p>Admin | Apr 06, 2023</p>
-                            </div>
-                        </div>
-
-                        <!-- Popular post -->
-                        <div class="whats-right-single mb-20">
-                            <div class="whats-right-img" style="width: 30%;">
-                                <img src="{% static 'news/assets/img/article/0c7c6239-b730-486f-9f27-3b1df71698e8.jpg' %}"
-                                     alt="Con người cần bao lâu để chiếm hành tinh khác?" style="width: 100%;">
-                            </div>
-                            <div class="whats-right-cap" style="width: 70%;">
-                                <h4><a href="/con-nguoi-can-bao-lau-de-chiem-hanh-tinh-khac-a18.html">Con người
-                                    cần bao lâu để chiếm hành tinh khác?</a></h4>
-                                <p>Admin | Apr 06, 2023</p>
-                            </div>
-                        </div>
+                        {% endfor %}
 
                     </div>
                 </div>

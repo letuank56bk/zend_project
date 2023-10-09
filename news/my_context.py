@@ -2,6 +2,7 @@ from django.db.models import Count
 
 from .models import *
 from .define import *
+from django.utils import timezone
 
 
 # Hàm lấy tất cả các Category
@@ -18,9 +19,67 @@ def items_category_sidebar_menu(request):
     }
 
 
+# Tin tức tổng hợp
 def items_feed_sidebar_menu(request):
     items_feed_sidebar_menu = Feed.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[:5]
 
     return {
         "items_feed_sidebar_menu": items_feed_sidebar_menu
+    }
+
+
+# Bài viết gần đây
+def items_article_sidebar_recent(request):
+    # request.get_full_path() --> lấy thông tin path người dùng đang truy cập
+    # -> thay thế article bằng rỗng để có thể lấy được phần slug
+    skip_slug = request.get_full_path().replace("/article/", "")
+
+    items_article_sidebar_recent = (Article.objects
+                                    .filter(status=APP_VALUE_STATUS_ACTIVE,
+                                            publish_date__lte=timezone.now())
+                                    .exclude(slug=skip_slug)
+                                    .order_by("-publish_date")[:SETTING_ARTICLE_TOTAL_ITEMS_RELATED]
+                                    )
+
+    return {
+        "items_article_sidebar_recent": items_article_sidebar_recent
+    }
+
+
+# Bài viết ngẫu nhiên
+def items_article_footer_random(request):
+    # request.get_full_path() --> lấy thông tin path người dùng đang truy cập
+    # -> thay thế article bằng rỗng để có thể lấy được phần slug
+    # --> order_by("?") --> random order cho các phần tử
+    skip_slug = request.get_full_path().replace("/article/", "")
+
+    items_article_footer_random = (Article.objects
+                                   .filter(status=APP_VALUE_STATUS_ACTIVE,
+                                           publish_date__lte=timezone.now())
+                                   .exclude(slug=skip_slug)
+                                   .order_by("?")[:3]
+                                   )
+
+    return {
+        "items_article_footer_random": items_article_footer_random
+    }
+
+
+# Bài viết nóng nhất
+def items_article_header_trending(request):
+    # request.get_full_path() --> lấy thông tin path người dùng đang truy cập
+    # -> thay thế article bằng rỗng để có thể lấy được phần slug
+    # --> order_by("?") --> random order cho các phần tử
+    skip_slug = request.get_full_path().replace("/article/", "")
+
+    items_article_header_trending = (Article.objects
+                                     .filter(status=APP_VALUE_STATUS_ACTIVE,
+                                             publish_date__lte=timezone.now())
+                                     .exclude(slug=skip_slug)
+                                     .order_by("?")[:1]
+                                     )
+
+    print(items_article_header_trending)
+    return {
+        "items_article_header_trending": items_article_header_trending
     }
