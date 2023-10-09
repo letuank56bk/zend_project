@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     # Thư viện dùng để thay đổi chức năng ô nhập văn bản từ loại thường sang loại nhập HTML
     "tinymce",
     # Thư viện giúp xóa file hình ảnh cũ sau khi update hình ảnh mới
-    'django_cleanup.apps.CleanupConfig',
+    "django_cleanup.apps.CleanupConfig",
+    # Thư viện dùng để hiển thị dấu phẩy phân biệt phần nghìn, trắm, đơn vị ...
+    "django.contrib.humanize"
+
 ]
 
 MIDDLEWARE = [
@@ -74,6 +77,8 @@ TEMPLATES = [
                 "news.my_context.items_article_sidebar_recent",
                 "news.my_context.items_article_footer_random",
                 "news.my_context.items_article_header_trending",
+                "news.my_context.items_price_sidebar_coin",
+                "news.my_context.items_price_sidebar_gold"
             ],
         },
     },

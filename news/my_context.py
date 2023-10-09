@@ -1,8 +1,10 @@
+from django.contrib.sites import requests
 from django.db.models import Count
 
 from .models import *
 from .define import *
 from django.utils import timezone
+import requests
 
 
 # Hàm lấy tất cả các Category
@@ -82,4 +84,32 @@ def items_article_header_trending(request):
     print(items_article_header_trending)
     return {
         "items_article_header_trending": items_article_header_trending
+    }
+
+
+def items_price_sidebar_coin(request):
+    url = "http://apiforlearning.zendvn.com/api/get-coin"
+
+    items_price_sidebar_coin = []
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        items_price_sidebar_coin = response.json()[:5]
+
+    return {
+        "items_price_sidebar_coin": items_price_sidebar_coin
+    }
+
+
+def items_price_sidebar_gold(request):
+    url = "http://apiforlearning.zendvn.com/api/get-gold"
+
+    items_price_sidebar_gold = []
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        items_price_sidebar_gold = response.json()[:5]
+
+    return {
+        "items_price_sidebar_gold": items_price_sidebar_gold
     }
