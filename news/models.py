@@ -57,7 +57,7 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         # article_slug --> là phần slug ở bên views, phần này sẽ được truyền giá trị slug đã nhập trong DB
-        return reverse("article", kwargs={"article_slug": self.slug})
+        return reverse("article", kwargs={"article_slug": self.slug, "article_id": self.id})
 
 
 class Feed(models.Model):
