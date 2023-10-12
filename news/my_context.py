@@ -14,7 +14,7 @@ import requests
 # ---> [:5] lấy 5 giá trị category đầu tiền
 def items_category_sidebar_menu(request):
     items_category_sidebar_menu = Category.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering").annotate(
-        num_articles=Count("article"))[:5]
+        num_articles=Count("article"))[:SETTING_CATEGORY_TOTAL_ITEMS_SIDEBAR]
 
     return {
         "items_category_sidebar_menu": items_category_sidebar_menu
@@ -23,7 +23,7 @@ def items_category_sidebar_menu(request):
 
 # Tin tức tổng hợp
 def items_feed_sidebar_menu(request):
-    items_feed_sidebar_menu = Feed.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[:5]
+    items_feed_sidebar_menu = Feed.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[:SETTING_FEED_TOTAL_ITEMS_SIDEBAR]
 
     return {
         "items_feed_sidebar_menu": items_feed_sidebar_menu
@@ -40,7 +40,7 @@ def items_article_sidebar_recent(request):
                                     .filter(status=APP_VALUE_STATUS_ACTIVE,
                                             publish_date__lte=timezone.now())
                                     .exclude(slug=skip_slug)
-                                    .order_by("-publish_date")[:SETTING_ARTICLE_TOTAL_ITEMS_RELATED]
+                                    .order_by("-publish_date")[:SETTING_ARTICLE_TOTAL_ITEMS_RECENT]
                                     )
 
     return {
@@ -59,7 +59,7 @@ def items_article_footer_random(request):
                                    .filter(status=APP_VALUE_STATUS_ACTIVE,
                                            publish_date__lte=timezone.now())
                                    .exclude(slug=skip_slug)
-                                   .order_by("?")[:3]
+                                   .order_by("?")[:SETTING_ARTICLE_TOTAL_ITEMS_RANDOM]
                                    )
 
     return {
@@ -88,13 +88,13 @@ def items_article_header_trending(request):
 
 
 def items_price_sidebar_coin(request):
-    url = "http://apiforlearning.zendvn.com/api/get-coin"
+    url = SETTING_API_LINK_PRICE_COIN
 
     items_price_sidebar_coin = []
 
     response = requests.get(url)
     if response.status_code == 200:
-        items_price_sidebar_coin = response.json()[:5]
+        items_price_sidebar_coin = response.json()[:SETTING_PRICE_COIN_TOTAL_ITEM]
 
     return {
         "items_price_sidebar_coin": items_price_sidebar_coin
@@ -102,13 +102,13 @@ def items_price_sidebar_coin(request):
 
 
 def items_price_sidebar_gold(request):
-    url = "http://apiforlearning.zendvn.com/api/get-gold"
+    url = SETTING_API_LINK_PRICE_GOLD
 
     items_price_sidebar_gold = []
 
     response = requests.get(url)
     if response.status_code == 200:
-        items_price_sidebar_gold = response.json()[:5]
+        items_price_sidebar_gold = response.json()[:SETTING_PRICE_GOLD_TOTAL_ITEM]
 
     return {
         "items_price_sidebar_gold": items_price_sidebar_gold
