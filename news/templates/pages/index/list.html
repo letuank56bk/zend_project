@@ -1,0 +1,17 @@
+{% for itemChild in item.article_filter|slice:":4" %}
+    <div class="col-xl-12">
+        <div class="whats-right-single mb-20">
+            <div class="whats-right-img" style="width: 30%">
+                <img src="{{ itemChild.image.url }}"
+                     alt="" style="width: 100%; object-fit: cover;">
+            </div>
+            <div class="whats-right-cap" style="width: 70%;">
+                <h4 style="font-size: 22px;"><a
+                        href="{{ itemChild.get_absolute_url }}">{{ itemChild.name }}</a>
+                </h4>
+                <p>
+                    {{ itemChild.content|safe|truncatechars:180 }}
+            </div>
+        </div>
+    </div>
+{% endfor %}

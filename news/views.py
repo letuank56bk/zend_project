@@ -119,8 +119,8 @@ def feed(request, feed_slug):
     # encoding='utf-8' --> encode dưới dạng utf-8 (tiếng việt) tránh trường hợp lỗi tiếng việt khi ghi vào file json
     # ensure_ascii=False --> Không mã hóa khi ghi vào file
     #####################################################
-    with open('feed.json', 'w', encoding='utf-8') as f:
-        json.dump(feed, f, ensure_ascii=False)
+    # with open('feed.json', 'w', encoding='utf-8') as f:
+    #     json.dump(feed, f, ensure_ascii=False)
     #####################################################
 
     return render(request, APP_PATH_PAGE + 'feed.html', {

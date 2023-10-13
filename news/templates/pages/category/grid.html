@@ -1,0 +1,5 @@
+{% load render-share %}
+
+{% for item in items_article %}
+    {% render_share "grid.html" item %}
+{% endfor %}
