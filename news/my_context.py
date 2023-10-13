@@ -1,5 +1,6 @@
 from django.contrib.sites import requests
 from django.db.models import Count
+from .helpers import *
 
 from .models import *
 from .define import *
@@ -34,7 +35,11 @@ def items_feed_sidebar_menu(request):
 def items_article_sidebar_recent(request):
     # request.get_full_path() --> lấy thông tin path người dùng đang truy cập
     # -> thay thế article bằng rỗng để có thể lấy được phần slug
-    skip_slug = request.get_full_path().replace("/article/", "")
+    # Nguyên bản khi chưa re_path lại đường dẫn bằng biểu thức chính quy
+    # skip_slug = request.get_full_path().replace("/article/", "")
+
+    # -> Sau khi dùng biểu thức chính quy ở URL cần định nghĩa thêm hàm ở helper để lấy slug trong đường dẫn.
+    skip_slug = get_skip_slug_article(request.path)
 
     items_article_sidebar_recent = (Article.objects
                                     .filter(status=APP_VALUE_STATUS_ACTIVE,
@@ -53,7 +58,11 @@ def items_article_footer_random(request):
     # request.get_full_path() --> lấy thông tin path người dùng đang truy cập
     # -> thay thế article bằng rỗng để có thể lấy được phần slug
     # --> order_by("?") --> random order cho các phần tử
-    skip_slug = request.get_full_path().replace("/article/", "")
+    # Nguyên bản khi chưa re_path lại đường dẫn bằng biểu thức chính quy
+    # skip_slug = request.get_full_path().replace("/article/", "")
+
+    # -> Sau khi dùng biểu thức chính quy ở URL cần định nghĩa thêm hàm ở helper để lấy slug trong đường dẫn.
+    skip_slug = get_skip_slug_article(request.path)
 
     items_article_footer_random = (Article.objects
                                    .filter(status=APP_VALUE_STATUS_ACTIVE,
@@ -72,7 +81,12 @@ def items_article_header_trending(request):
     # request.get_full_path() --> lấy thông tin path người dùng đang truy cập
     # -> thay thế article bằng rỗng để có thể lấy được phần slug
     # --> order_by("?") --> random order cho các phần tử
-    skip_slug = request.get_full_path().replace("/article/", "")
+    # Nguyên bản khi chưa re_path lại đường dẫn bằng biểu thức chính quy
+    # skip_slug = request.get_full_path().replace("/article/", "")
+
+    # -> Sau khi dùng biểu thức chính quy ở URL cần định nghĩa thêm hàm ở helper để lấy slug trong đường dẫn.
+    skip_slug = get_skip_slug_article(request.path)
+
 
     items_article_header_trending = (Article.objects
                                      .filter(status=APP_VALUE_STATUS_ACTIVE,
