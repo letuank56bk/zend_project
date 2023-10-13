@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
+# import tất cả các class model trong folder models thông qua file __init__
 from .models import Category, Article, Feed
 
 # Import các hằng số (tên mặc định của hệ thống)

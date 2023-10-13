@@ -1,7 +1,6 @@
 import re
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-# Import các model
+# import tất cả các class model trong folder models thông qua file __init__
 from .models import Category, Article, Feed
 # Thư viện xử lý về thời gian
 from django.utils import timezone
@@ -9,8 +8,7 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 # Thư viện dùng để xử lý RSS
 import feedparser
-# Thư viện json
-import json
+
 # Thư viện BeautifulSoup --> Dùng để phân tích cú pháp HTML/ XML, giúp cho việc trích xuất thông tin dễ dàng hơn
 from bs4 import BeautifulSoup
 # import tập tin define.py

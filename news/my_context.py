@@ -2,7 +2,10 @@ from django.contrib.sites import requests
 from django.db.models import Count
 from .helpers import *
 
-from .models import *
+# import tất cả các class model trong folder models thông qua file __init__
+from .models import Category, Article, Feed
+
+# from .models import *
 from .define import *
 from django.utils import timezone
 import requests
