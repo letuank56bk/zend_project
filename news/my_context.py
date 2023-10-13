@@ -27,7 +27,8 @@ def items_category_sidebar_menu(request):
 
 # Tin tức tổng hợp
 def items_feed_sidebar_menu(request):
-    items_feed_sidebar_menu = Feed.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[:SETTING_FEED_TOTAL_ITEMS_SIDEBAR]
+    items_feed_sidebar_menu = Feed.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
+                              :SETTING_FEED_TOTAL_ITEMS_SIDEBAR]
 
     return {
         "items_feed_sidebar_menu": items_feed_sidebar_menu
@@ -90,7 +91,6 @@ def items_article_header_trending(request):
     # -> Sau khi dùng biểu thức chính quy ở URL cần định nghĩa thêm hàm ở helper để lấy slug trong đường dẫn.
     skip_slug = get_skip_slug_article(request.path)
 
-
     items_article_header_trending = (Article.objects
                                      .filter(status=APP_VALUE_STATUS_ACTIVE,
                                              publish_date__lte=timezone.now())
@@ -108,10 +108,13 @@ def items_price_sidebar_coin(request):
     url = SETTING_API_LINK_PRICE_COIN
 
     items_price_sidebar_coin = []
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            items_price_sidebar_coin = response.json()[:SETTING_PRICE_COIN_TOTAL_ITEM]
 
-    response = requests.get(url)
-    if response.status_code == 200:
-        items_price_sidebar_coin = response.json()[:SETTING_PRICE_COIN_TOTAL_ITEM]
+    except:
+        print("Get coin error!")
 
     return {
         "items_price_sidebar_coin": items_price_sidebar_coin
@@ -123,9 +126,13 @@ def items_price_sidebar_gold(request):
 
     items_price_sidebar_gold = []
 
-    response = requests.get(url)
-    if response.status_code == 200:
-        items_price_sidebar_gold = response.json()[:SETTING_PRICE_GOLD_TOTAL_ITEM]
+
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            items_price_sidebar_gold = response.json()[:SETTING_PRICE_GOLD_TOTAL_ITEM]
+    except:
+        print("Get gold error!")
 
     return {
         "items_price_sidebar_gold": items_price_sidebar_gold

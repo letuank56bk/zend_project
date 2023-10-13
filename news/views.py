@@ -24,7 +24,8 @@ def index(request):
     items_category = Category.objects.filter(status=APP_VALUE_STATUS_ACTIVE, is_homepage=True).order_by("ordering")
 
     for item in items_category:
-        item.article_filter = item.article_set.filter(status=APP_VALUE_STATUS_ACTIVE, publish_date__lte=timezone.now()).order_by(
+        item.article_filter = item.article_set.filter(status=APP_VALUE_STATUS_ACTIVE,
+                                                      publish_date__lte=timezone.now()).order_by(
             "-publish_date")
 
     return render(request, APP_PATH_PAGE + 'index.html', {
@@ -64,7 +65,8 @@ def category(request, category_slug):
 
 def article(request, article_slug, article_id):
     # Tìm kiếm trong DB, nếu có trả ra thông tin, nếu không phản hồi lại 404
-    item_article = get_object_or_404(Article, id=article_id, slug=article_slug, status=APP_VALUE_STATUS_ACTIVE, publish_date__lte=timezone.now())
+    item_article = get_object_or_404(Article, id=article_id, slug=article_slug, status=APP_VALUE_STATUS_ACTIVE,
+                                     publish_date__lte=timezone.now())
     # Bài viết liên quan
     # --> exclude: Loại bỏ các bài viết có tên giống với bài đang hiển thị (thông qua slug) trong mục bài viết liện quan
     # --> [:SETTING_ARTICLE_TOTAL_ITEMS_RECENT] chỉ lấy 6 phần từ đầu tiên của kết quả trả về --> tránh trường hợp show tất cả dữ liệu
@@ -87,32 +89,36 @@ def feed(request, feed_slug):
     # --> pip install feedparser
     # Tìm kiếm trong DB, nếu có trả ra thông tin, nếu không phản hồi lại 404
     item_feed = get_object_or_404(Feed, slug=feed_slug, status=APP_VALUE_STATUS_ACTIVE)
-    feed = feedparser.parse(item_feed.link)
 
     # Khởi tạo mảng rỗng items_feed
     items_feed = []
+    try:
+        feed = feedparser.parse(item_feed.link)
 
-    for entry in feed.entries:
-        # Sử dụng thư viện BeautifulSoup để phân tích cụm dữ liệu summary dưới dạng HTML
-        # -> tìm kiểm thẻ img trong soup sau đó gán vào biến img_tag
-        # --> khởi tạo biến src_img --> nếu img_tag khác rỗng, gán biến src_img là phân src của img_tag
-        soup = BeautifulSoup(entry.summary, 'html.parser')
-        img_tag = soup.find('img')
+        for entry in feed.entries:
+            # Sử dụng thư viện BeautifulSoup để phân tích cụm dữ liệu summary dưới dạng HTML
+            # -> tìm kiểm thẻ img trong soup sau đó gán vào biến img_tag
+            # --> khởi tạo biến src_img --> nếu img_tag khác rỗng, gán biến src_img là phân src của img_tag
+            soup = BeautifulSoup(entry.summary, 'html.parser')
+            img_tag = soup.find('img')
 
-        # Đặt hình ảnh mặc định cho bài viết, phòng trường hợp RSS của bài viết không có hình ảnh
-        src_img = APP_VALUE_IMAGE_DEFAULT
-        # Nếu bài viết có hình ảnh, sử dụng hình ảnh của bài viết
-        if img_tag:
-            src_img = img_tag["src"]
+            # Đặt hình ảnh mặc định cho bài viết, phòng trường hợp RSS của bài viết không có hình ảnh
+            src_img = APP_VALUE_IMAGE_DEFAULT
+            # Nếu bài viết có hình ảnh, sử dụng hình ảnh của bài viết
+            if img_tag:
+                src_img = img_tag["src"]
 
-        item = {
-            "title": entry.title,
-            "link": entry.link,
-            "pub_date": entry.published,
-            "img": src_img,
-        }
-        # Thêm item vào trong mảng items_feed
-        items_feed.append(item)
+            item = {
+                "title": entry.title,
+                "link": entry.link,
+                "pub_date": entry.published,
+                "img": src_img,
+            }
+            # Thêm item vào trong mảng items_feed
+            items_feed.append(item)
+
+    except:
+        print("Get feed error!")
 
     # Kiểm tra dạng dữ liệu JSON sau khi parse, chỉ dùng khi muốn xem các trường để dev, khi chạy không cần thiết
     # Ghi dữ liệu RSS sau khi parse vào 1 file json

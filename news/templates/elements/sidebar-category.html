@@ -9,7 +9,7 @@
                 {# item_name --> Lấy từ my_context #}
                 {# --> Neeus 2 cái bằng nhau --> highlight cho người dùng #}
                 <a href="{{ item.get_absolute_url }}" class="d-flex">
-                    <p {% if item_category.name == item.name %} class="text-primary"{% endif %}>
+                    <p {% if item_category.name == item.name or item_article.category.name == item.name %} class="text-primary"{% endif %}>
                         {{ item.name }} ({{ item.num_articles }})
                     </p>
                 </a>
