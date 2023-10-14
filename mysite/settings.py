@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Thêm news vào trong danh sách ứng dụng của hệ thống --> active ứng dụng
     "news.apps.NewsConfig",
+    # Thêm shop vào trong danh sách ứng dụng của hệ thống --> active ứng dụng
+    "shop.apps.ShopConfig",
     # Thư viện dùng để thay đổi chức năng ô nhập văn bản từ loại thường sang loại nhập HTML
     "tinymce",
     # Thư viện giúp xóa file hình ảnh cũ sau khi update hình ảnh mới
