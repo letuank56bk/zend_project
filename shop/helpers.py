@@ -8,7 +8,7 @@ import re
 def get_file_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
-    return os.path.join('news/images/article', filename)
+    return os.path.join('shop/images/product', filename)
 
 
 def get_skip_slug_article(path):

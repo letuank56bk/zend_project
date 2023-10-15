@@ -22,11 +22,11 @@ class Product(models.Model):
     status = models.CharField(max_length=10, choices=APP_VALUE_STATUS_CHOICES, default=APP_VALUE_STATUS_DEFAULT)
     ordering = models.IntegerField(default=0)
     special = CustomBooleanField()
-    price = models.DecimalField(max_digits=10, decimal_places=0 )
+    price = models.DecimalField(max_digits=10, decimal_places=0)
     price_sale = models.DecimalField(max_digits=10, decimal_places=0, null=True, blank=True)
     # nếu có giá sale --> price_real = price_sale, nếu không có price_real = price
-    price_real = models.DecimalField(max_digits=10, decimal_places=0)
-    total_sold = models.IntegerField(default=0)
+    price_real = models.DecimalField(max_digits=10, decimal_places=0, editable=False)
+    total_sold = models.IntegerField(default=0, editable=False)
     summary = models.TextField()
     content = HTMLField()
     # Thay đổi tên file và upload lên thư mục được chỉ định
@@ -34,7 +34,6 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     # Tạo mối quan hệ nhiều - nhiều với bảng planting method
     planting_methods = models.ManyToManyField(PlantingMethod)
-
 
     class Meta:
         # Thay đổi tên hiển thị của model trong admin
@@ -47,3 +46,12 @@ class Product(models.Model):
     def get_absolute_url(self):
         # article_slug --> là phần slug ở bên views, phần này sẽ được truyền giá trị slug đã nhập trong DB
         return reverse("product", kwargs={"product_slug": self.slug, "product_id": self.id})
+
+    def save(self, *args, **kwargs):
+        # Phần xử lý viết ở đây
+        if self.price_sale:
+            self.price_real = self.price_sale
+        else:
+            self.price_real = self.price
+
+        super().save(*args, **kwargs)
