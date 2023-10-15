@@ -63,4 +63,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Feed, FeedAdmin)
 
-admin.site.site_header = "Hệ Thống Quản Lý Thông Tin"
+admin.site.site_header = ADMIN_HEADER_NAME

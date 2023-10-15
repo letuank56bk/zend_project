@@ -6,11 +6,15 @@ APP_VALUE_LAYOUT_DEFAULT = "list"
 
 APP_VALUE_STATUS_DEFAULT = "draft"
 
+# Định nghĩa lại tên hiển thị trong trang admin
+TABLE_PLANTING_METHOD_SHOW = "Planting Methods"
+
 TABLE_CATEGORY_SHOW = "Category"
 
-TABLE_ARTICLE_SHOW = "Article"
+TABLE_PRODUCT_SHOW = "Products"
 
-TABLE_FEED_SHOW = "Feed"
+# Định nghĩa lại tên hiển thị trong trang admin
+
 
 APP_VALUE_STATUS_CHOICES = (
     ('draft', 'Draft'),
@@ -52,3 +56,4 @@ SETTING_PRICE_COIN_TOTAL_ITEM = 5
 
 SETTING_PRICE_GOLD_TOTAL_ITEM = 5
 
+ADMIN_HEADER_NAME = "Hệ Thống Quản Lý Thông Tin"

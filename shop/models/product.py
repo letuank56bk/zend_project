@@ -12,6 +12,7 @@ from shop.custom_field import *
 # --> Các hằng số này được khai báo giúp code được tường mình và gọn gàng hơn
 from shop.define import *
 from .category import Category
+from .planting_method import PlantingMethod
 
 
 # Create your models here.
@@ -31,10 +32,13 @@ class Product(models.Model):
     # Thay đổi tên file và upload lên thư mục được chỉ định
     image = models.ImageField(upload_to=get_file_path)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    # Tạo mối quan hệ nhiều - nhiều với bảng planting method
+    planting_methods = models.ManyToManyField(PlantingMethod)
+
 
     class Meta:
         # Thay đổi tên hiển thị của model trong admin
-        verbose_name_plural = TABLE_ARTICLE_SHOW
+        verbose_name_plural = TABLE_PRODUCT_SHOW
 
     # Thay đổi thông tin trả về trong phần thông báo trang admin
     def __str__(self):
