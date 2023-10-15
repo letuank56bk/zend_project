@@ -1,0 +1,86 @@
+{% extends "shop/layout.html" %}
+
+{% load static %}
+
+{% block content %}
+<section class="our-contact" style="padding: 50px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-4">
+                <div class="contact_localtion text-center">
+                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                    <h4>Địa chỉ</h4>
+                    <p>Số 01, Khối A1, Tòa nhà Đạt Gia, 43 Đường Cây Keo, Tam Phú, Thủ Đức, Hồ Chí Minh</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="contact_localtion text-center">
+                    <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                    <h4>Hotline</h4>
+                    <p class="mb0"> Mr. Linh: <a href="tel:0336 405 077">0336 405 077</a><br> Mr. Lân: <a
+                            href="tel: 0383 308 983">0383 308 983</a><br> Ms. Nghi: <a href="tel: 090 5744 470">090
+                            5744 470</a></p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="contact_localtion text-center">
+                    <div class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+                    <h4>Email</h4>
+                    <p><a href="mailto:training@zendvn.com">training@zendvn.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 50px;">
+            <div class="col-lg-6">
+                <div class="h600 overflow-hidden" id="map-canvas"><iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.36020553829!2d106.73649971471919!3d10.860183792264719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527d5640014e7%3A0x3bb323b29d50dca9!2zWmVuZFZOIC0gxJDDoG8gVOG6oW8gTOG6rXAgVHLDrG5oIFZpw6pu!5e0!3m2!1sen!2s!4v1637228389649!5m2!1sen!2s"
+                        width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+            </div>
+            <div class="col-lg-6 form_grid">
+                <h4 class="mb5">Gửi tin nhắn cho chúng tôi</h4>
+                <p style="line-height: 25px">Bạn chỉ đầy đủ thông tin cá nhân và vấn đề trao đổi với ZendVN vào form
+                    bên dưới, sau khi nhận được thông tin này chúng tôi sẽ liên hệ với các bạn trong thời gian sớm
+                    nhất.</p>
+                <form class="contact_form" id="contact_form" name="contact_form" action="/lien-he.html"
+                    method="post">
+                    <input type="hidden" name="csrfmiddlewaretoken"
+                        value="zQSiAUAvXGIOKnlVnor6kWukndBaHAIzZdK9vDH7we6ngdZVNyRS4ySS0Q3tFN1w">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputName">Họ tên</label>
+                                <input id="form_name" name="name" class="form-control" type="text" value="">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail">Email</label>
+                                <input id="form_email" name="email" class="form-control email" type="email"
+                                    value="">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputPhone">Phone</label>
+                                <input id="form_phone" name="phone" class="form-control" type="text" value="">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Lời nhắn</label>
+                                <textarea id="form_message" name="message" class="form-control" rows="5"></textarea>
+
+                            </div>
+                            <div class="form-group ui_kit_button mb0"><button type="submit"
+                                    class="btn dbxshad btn-md btn-thm circle white">Gửi ngay</button></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

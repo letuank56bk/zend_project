@@ -1,0 +1,56 @@
+{% extends "shop/layout.html" %}
+
+{% load static %}
+
+{% block content %}
+<section class="featured spad">
+    <div class="container">
+        {% include 'shop/pages/index/product-feature.html' %}
+    </div>
+</section>
+
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="static/shop/assets/img/banner/banner-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="static/shop/assets/img/banner/banner-2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="latest-product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="latest-product__text">
+                    {% include 'shop/pages/index/product-latest.html' %}
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="latest-product__text">
+                    {% include 'shop/pages/index/product-hot.html' %}
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="latest-product__text">
+                    {% include 'shop/pages/index/product-random.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="from-blog spad">
+    <div class="container">
+        {% include 'shop/pages/index/blog.html' %}
+    </div>
+</section>
+{% endblock %}

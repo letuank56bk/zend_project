@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    {% include 'shop/elements/head.html' %}
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+
+    {% include 'shop/elements/humberger.html' %}
+    
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        {% include 'shop/elements/header.html' %}
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero hero-normal">
+        {% include 'shop/elements/menu.html' %}
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'shop/assets/img/breadcrumb.jpg' %}">
+        {% include 'shop/elements/breadcrumb.html' %}
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        {% include 'shop/elements/footer.html' %}
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    {% include 'shop/elements/scripts.html' %}
+</body>
+</html>

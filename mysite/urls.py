@@ -19,9 +19,10 @@ from django.urls import path, include
 
 
 from mysite import settings
-
 urlpatterns = [
-    path("", include("news.urls")),
+    path("", include("shop.urls")),
+    path("news/", include("news.urls")),
     path("admin/", admin.site.urls),
 
 ]
+

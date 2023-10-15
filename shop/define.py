@@ -1,4 +1,4 @@
-APP_PATH_PAGE = "pages/"
+APP_PATH_PAGE = "shop/pages/"
 
 APP_VALUE_STATUS_ACTIVE = "published"
 

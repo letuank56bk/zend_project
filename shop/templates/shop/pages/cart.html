@@ -1,0 +1,106 @@
+{% extends "shop/layout.html" %}
+
+{% load static %}
+
+{% block content %}
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Sản Phẩm</th>
+                                <th>Đơn Giá</th>
+                                <th>Số Lượng</th>
+                                <th>Thành Tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td class="shoping__cart__item">
+                                    <img src="static/shop/assets/img-demo/edf91abb-3370-4555-9403-07b481bfb9fb.jpg"
+                                        alt="Cây Thịnh Vượng" class="img_thumb_cart">
+                                    <h5>Cây Thịnh Vượng</h5>
+                                </td>
+                                <td class="shoping__cart__price">
+                                    <span class="price_old"></span>
+                                    <span>175.000đ</span>
+                                </td>
+                                <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <a href="/cap-nhat-gio-hang.html?productId=37&amp;action=decrease"
+                                                class="dec qtybtn">-</a>
+                                            <input type="text" value="1">
+                                            <a href="/cap-nhat-gio-hang.html?productId=37&amp;action=increase"
+                                                class="inc qtybtn">+</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="shoping__cart__total">
+                                    175.000đ
+                                </td>
+                                <td class="shoping__cart__item__close">
+                                    <a href="/cap-nhat-gio-hang.html?productId=37&amp;action=delete"
+                                        class="icon_close"></a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="shoping__cart__item">
+                                    <img src="static/shop/assets/img-demo/aab77653-f146-4ecd-9acb-e8dfa1ec69f3.png"
+                                        alt="Cây Nha Đam" class="img_thumb_cart">
+                                    <h5>Cây Nha Đam</h5>
+                                </td>
+                                <td class="shoping__cart__price">
+                                    <span class="price_old"></span>
+                                    <span>125.000đ</span>
+                                </td>
+                                <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <a href="/cap-nhat-gio-hang.html?productId=34&amp;action=decrease"
+                                                class="dec qtybtn">-</a>
+                                            <input type="text" value="2">
+                                            <a href="/cap-nhat-gio-hang.html?productId=34&amp;action=increase"
+                                                class="inc qtybtn">+</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="shoping__cart__total">
+                                    250.000đ
+                                </td>
+                                <td class="shoping__cart__item__close">
+                                    <a href="/cap-nhat-gio-hang.html?productId=34&amp;action=delete"
+                                        class="icon_close"></a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a href="./shop.html" class="primary-btn cart-btn">Tiếp Tục Mua Hàng</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <ul>
+                        <li>Tổng Tiền <span>425.000đ</span></li>
+                    </ul>
+                    <a href="/thanh-toan.html" class="primary-btn">Tiến Hành Đặt Hàng</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
