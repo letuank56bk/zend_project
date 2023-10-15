@@ -13,6 +13,7 @@ TABLE_CATEGORY_SHOW = "Category"
 
 TABLE_PRODUCT_SHOW = "Products"
 
+TABLE_CONTACT_SHOW = "Contact"
 # Định nghĩa lại tên hiển thị trong trang admin
 
 

@@ -9,3 +9,11 @@ class CustomBooleanField(models.BooleanField):
         kwargs['initial'] = False
 
         return super().formfield(**kwargs)
+
+
+class CustomBooleanFieldContact(models.BooleanField):
+    def formfield(self, **kwargs):
+        kwargs['widget'] = RadioSelect(choices=((True, 'Đã liên hệ'), (False, 'Chưa liên hệ')))
+        kwargs['initial'] = False
+
+        return super().formfield(**kwargs)

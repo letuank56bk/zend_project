@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 # import tất cả các class model trong folder models thông qua file __init__
-from .models import Category, Product, PlantingMethod
+from .models import Category, Product, PlantingMethod, Contact
 
 # Import các hằng số (tên mặc định của hệ thống)
 # --> Các hằng số này được khai báo giúp code được tường mình và gọn gàng hơn
@@ -75,12 +75,55 @@ class ProductAdmin(admin.ModelAdmin):
 
     @admin.display(description="image")
     def display_image(self, obj):
-        return format_html('<img src="{}" width="50" height="50" />', obj.image.url)
+        return format_html(f'<img src="{obj.image.url}" width="50" height="50" />')
+
+
+# Custom trang planting method trong admin
+class PlantingMethodAdmin(admin.ModelAdmin):
+    # list_display --> danh sách các cột sẽ hiển thị trong view admin
+    list_display = ('name', 'status', 'ordering')
+    # list_filter --> tạo bộ lọc với các trường được liệt kê
+    list_filter = ['status']
+    # search_fields --> tạo thêm ô tìm kiếm theo cột name
+    search_fields = ["name"]
+
+    # Tự động sinh ra slug từ tên của category (sẽ có lỗi xảy ra nếu tên category là tiếng việt có dấu)
+    # --> prepopulated_fields = {'slug': ('name',)}
+    # custome tạo slug tự động, loại bỏ lỗi đối với tiếng việt
+    class Media:
+        js = ADMIN_SRC_JS
+        css = ADMIN_SRC_CSS
+
+
+class ContactAdmin(admin.ModelAdmin):
+    # readonly_fields --> Các trường không muốn người quản trị viên tác động vào
+    readonly_fields = ('name', 'email', 'phone', 'message')
+    # Thứ tự các trường sẽ xuất hiện trong phần add/ edit của quản trị viên.
+    # -> Nếu không sử dụng fields, các cột trong readonly sẽ bị đẩy xuống dưới cùng, django ưu tiên các cột cần điền lên bên trên
+    fields = ('name', 'email', 'phone', 'created', 'contacted', 'message', 'message_admin')
+    # list_display --> danh sách các cột sẽ hiển thị trong view admin
+    list_display = ('name', 'email', 'phone', 'created', 'contacted', 'message', 'message_admin')
+    # list_filter --> tạo bộ lọc với các trường được liệt kê
+    list_filter = ['contacted']
+    # search_fields --> tạo thêm ô tìm kiếm theo cột name
+    search_fields = ['name']
+
+    # Tự động sinh ra slug từ tên của category (sẽ có lỗi xảy ra nếu tên category là tiếng việt có dấu)
+    # --> prepopulated_fields = {'slug': ('name',)}
+    # custome tạo slug tự động, loại bỏ lỗi đối với tiếng việt
+    class Media:
+        js = ADMIN_SRC_JS
+        css = ADMIN_SRC_CSS
+
+    # Loại bỏ tính năng add contact của quản trị viên, mục add chỉ được thực hiện từ phía người dùng thông qua UI
+    def has_add_permission(self, request):
+        return False
 
 
 # Thêm view Category/ CategoryAdmin vào trang admin
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(PlantingMethod)
+admin.site.register(PlantingMethod, PlantingMethodAdmin)
+admin.site.register(Contact, ContactAdmin)
 
 admin.site.site_header = ADMIN_HEADER_NAME
