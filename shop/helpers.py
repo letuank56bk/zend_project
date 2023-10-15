@@ -2,6 +2,9 @@ import os
 import uuid
 import re
 
+# Thư viện locale giúp format dữ liệu dạng số
+import locale
+
 
 # Hàm random tên hình ảnh
 # --> Sử dụng trong models (trường image)
@@ -23,3 +26,12 @@ def get_skip_slug_article(path):
         skip_slug = match.group("article_slug")
 
     return skip_slug
+
+
+# format lại định dạng giá tiền theo VND (ngắn cách các phần bằng dấu chấm)
+def format_currency_vietnam(number):
+    locale.setlocale(locale.LC_ALL, 'vi_VN')
+
+    formatted_number = locale.format_string('%d', number, grouping=True) + 'đ'
+
+    return formatted_number

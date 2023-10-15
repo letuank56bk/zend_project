@@ -47,6 +47,7 @@ class Product(models.Model):
         # article_slug --> là phần slug ở bên views, phần này sẽ được truyền giá trị slug đã nhập trong DB
         return reverse("product", kwargs={"product_slug": self.slug, "product_id": self.id})
 
+    # Tự động gán giá trị cho price_real mỗi khi người dùng lưu thông tin
     def save(self, *args, **kwargs):
         # Phần xử lý viết ở đây
         if self.price_sale:
