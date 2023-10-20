@@ -17,4 +17,17 @@ from .define import *
 
 # Create your views here.
 def index(request):
-    return render(request, APP_PATH_PAGE + 'index.html')
+    # items_article_special = (Article.objects
+    #                          .filter(special=True, status=APP_VALUE_STATUS_ACTIVE, publish_date__lte=timezone.now())
+    #                          .order_by("-publish_date"))[:SETTING_ARTICLE_TOTAL_ITEMS_SPECIAL]
+
+    items_category = Category.objects.filter(status=APP_VALUE_STATUS_ACTIVE, is_homepage=True).order_by("ordering")
+
+    for item in items_category:
+        item.product_filter = item.product_set.filter(status=APP_VALUE_STATUS_ACTIVE, special=True).order_by("ordering")[:SETTING_PRODUCT_TOTAL_ITEMS_SPECIAL_INDEX]
+
+    return render(request, APP_PATH_PAGE + 'index.html', {
+        "title_page": "Trang chủ",
+        # "items_article_special": items_article_special,
+        "items_category": items_category
+    })

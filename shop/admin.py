@@ -33,10 +33,10 @@ class CategoryAdmin(admin.ModelAdmin):
 # Custom trang product trong admin
 class ProductAdmin(admin.ModelAdmin):
     # list_display --> danh sách các cột sẽ hiển thị trong view admin
-    list_display = ('display_image', 'name', 'status', 'ordering', 'special', 'price_formatted', 'price_sale_formatted',
-                    'price_real_formatted', 'get_planting_methods', 'total_sold')
+    list_display = ('display_image', 'name', 'category', 'status', 'ordering', 'special', 'price_formatted', 'price_sale_formatted',
+    'price_real_formatted', 'get_planting_methods', 'total_sold')
     # list_filter --> tạo bộ lọc với các trường được liệt kê
-    list_filter = ['status', 'special', 'planting_methods', ]
+    list_filter = ['status', 'special', 'planting_methods', 'category']
     # search_fields --> tạo thêm ô tìm kiếm theo cột name
     search_fields = ["name"]
 
