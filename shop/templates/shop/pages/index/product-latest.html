@@ -1,135 +1,38 @@
+{% load format_currency_vietnam %}
+{% load get_price_old %}
+
 <h4>Sản Phẩm Mới Nhất</h4>
 <div class="latest-product__slider owl-carousel owl-loaded owl-drag">
     <div class="owl-stage-outer">
         <div class="owl-stage"
-            style="transform: translate3d(-990px, 0px, 0px); transition: all 1.2s ease 0s; width: 1980px;">
-            <div class="owl-item" style="width: 330px;">
-                <div class="latest-prdouct__slider__item">
-                    <a href="/cay-siro-kim-quyt-a79.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/89ab60d1-91bc-4b5b-8c48-724697d5d80c.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Siro - Kim Quýt</h6>
-                            <span class="price_old"></span>
-                            <span>100.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-chanh-ngon-tay-a78.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/95be7433-4205-4e6a-a904-28aee61ca09d.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Chanh Ngón Tay</h6>
-                            <span class="price_old"></span>
-                            <span>3.500.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-dao-tien-a77.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/5e0e5552-755c-4fc5-8956-0d44b58c5601.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Đào Tiên</h6>
-                            <span class="price_old">300.000đ</span>
-                            <span>250.000đ</span>
-                        </div>
-                    </a>
-
+             style=" transform: translate3d(-990px, 0px, 0px); transition: all 1.2s ease 0s; width: 1980px;">
+            {% for group in items_product_lastest %}
+                <div class="owl-item" style="width: 330px;">
+                    <div class="latest-prdouct__slider__item">
+                        {% for item in group %}
+                            <a href="/cay-siro-kim-quyt-a79.html" class="latest-product__item">
+                                <div class="latest-product__item__pic" style="width: 35%;">
+                                    <img src="{{ item.image.url }}"
+                                         alt="" style="width: 100%;">
+                                </div>
+                                <div class="latest-product__item__text">
+                                    <h6>{{ item.name }}</h6>
+                                    <span class="price_old">{% get_price_old item.price item.price_sale %}</span>
+                                    <span>{{ item.price_real|format_currency_vietnam }}</span>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-
-            <div class="owl-item" style="width: 330px;">
-                <div class="latest-prdouct__slider__item">
-                    <a href="/cay-khe-chua-a76.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/9549a24e-c5d7-41ad-ba0c-f897713c8c91.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Khế Chua</h6>
-                            <span class="price_old"></span>
-                            <span>450.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-hoa-bach-nhat-a75.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/7cd1e14c-5713-4733-917c-eab37f252ed4.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Hoa Bách Nhật</h6>
-                            <span class="price_old"></span>
-                            <span>29.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-lan-toi-a74.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/f085c36d-322a-46b7-a495-9a1ba8b5faf7.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Lan Tỏi</h6>
-                            <span class="price_old"></span>
-                            <span>130.000đ</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <div class="owl-item" style="width: 330px;">
-                <div class="latest-prdouct__slider__item">
-                    <a href="/cay-buom-dem-a73.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/c8dd925e-6096-4273-9fe7-eb53675bc56e.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Bướm Đêm</h6>
-                            <span class="price_old">85.000đ</span>
-                            <span>75.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/hoa-trieu-chuong-chau-treo-a72.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/e35829eb-31f5-4cc1-86a0-83d851ac49c9.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Hoa Triệu Chuông Chậu Treo</h6>
-                            <span class="price_old"></span>
-                            <span>100.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-mong-cop-vang-a71.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/f96af265-b450-4f97-9227-4c505e39df13.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Móng Cọp Vàng</h6>
-                            <span class="price_old"></span>
-                            <span>90.000đ</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
-    <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span
-                class="fa fa-angle-left"><span></span></span></button><button type="button"
-            role="presentation" class="owl-next"><span
-                class="fa fa-angle-right"><span></span></span></button></div>
+    <div class="owl-nav">
+        <button type="button" role="presentation" class="owl-prev"><span
+                class="fa fa-angle-left"><span></span></span></button>
+        <button type="button"
+                role="presentation" class="owl-next"><span
+                class="fa fa-angle-right"><span></span></span></button>
+    </div>
     <div class="owl-dots disabled"></div>
 </div>
