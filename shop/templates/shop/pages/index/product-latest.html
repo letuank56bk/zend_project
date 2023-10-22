@@ -1,30 +1,13 @@
 {% load format_currency_vietnam %}
 {% load get_price_old %}
+{% load render_share_shop %}
 
 <h4>Sản Phẩm Mới Nhất</h4>
 <div class="latest-product__slider owl-carousel owl-loaded owl-drag">
     <div class="owl-stage-outer">
         <div class="owl-stage"
              style=" transform: translate3d(-990px, 0px, 0px); transition: all 1.2s ease 0s; width: 1980px;">
-            {% for group in items_product_lastest %}
-                <div class="owl-item" style="width: 330px;">
-                    <div class="latest-prdouct__slider__item">
-                        {% for item in group %}
-                            <a href="/cay-siro-kim-quyt-a79.html" class="latest-product__item">
-                                <div class="latest-product__item__pic" style="width: 35%;">
-                                    <img src="{{ item.image.url }}"
-                                         alt="" style="width: 100%;">
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>{{ item.name }}</h6>
-                                    <span class="price_old">{% get_price_old item.price item.price_sale %}</span>
-                                    <span>{{ item.price_real|format_currency_vietnam }}</span>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endfor %}
+            {% render_share_shop "product-slider.html" items_product_lastest %}
         </div>
     </div>
     <div class="owl-nav">

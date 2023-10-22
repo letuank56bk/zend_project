@@ -27,8 +27,23 @@ def index(request):
     # 1 nhóm sẽ có 3 sản phẩm
     items_product_lastest = chunked(items_product_lastest, SETTING_PRODUCT_TOTAL_ITEMS_PER_SLIDE)
 
+    items_product_hot = Product.objects.filter(special=True, status=APP_VALUE_STATUS_ACTIVE).order_by("-total_sold")[
+                            :SETTING_PRODUCT_TOTAL_ITEMS_HOT_INDEX]
+
+    # 1 nhóm sẽ có 3 sản phẩm
+    items_product_hot = chunked(items_product_hot, SETTING_PRODUCT_TOTAL_ITEMS_PER_SLIDE)
+
+    items_product_random = Product.objects.filter(special=True, status=APP_VALUE_STATUS_ACTIVE).order_by("?")[
+                            :SETTING_PRODUCT_TOTAL_ITEMS_RANDOM_INDEX]
+
+    # 1 nhóm sẽ có 3 sản phẩm
+    items_product_random = chunked(items_product_random, SETTING_PRODUCT_TOTAL_ITEMS_PER_SLIDE)
+
+
     return render(request, APP_PATH_PAGE + 'index.html', {
         "title_page": "Trang chủ",
         "items_product_lastest": items_product_lastest,
+        "items_product_hot": items_product_hot,
+        "items_product_random": items_product_random,
         "items_category": items_category
     })

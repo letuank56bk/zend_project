@@ -1,138 +1,21 @@
+{% load format_currency_vietnam %}
+{% load get_price_old %}
+{% load render_share_shop %}
+
 <h4>Sản Phẩm Bán Chạy</h4>
 <div class="latest-product__slider owl-carousel owl-loaded owl-drag">
     <div class="owl-stage-outer">
         <div class="owl-stage"
-            style="transform: translate3d(-660px, 0px, 0px); transition: all 1.2s ease 0s; width: 1980px;">
-
-            <div class="owl-item" style="width: 330px;">
-                <div class="latest-prdouct__slider__item">
-                    <a href="/cay-van-loc-a22.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/2bacb687-2781-49b0-ac36-bca2ae23abda.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Vạn Lộc</h6>
-                            <span class="price_old">200.000đ</span>
-                            <span>190.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-truong-sinh-a23.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/74b6929f-1954-49e6-a80f-9b7d3cc8c1a4.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Trường Sinh</h6>
-                            <span class="price_old"></span>
-                            <span>190.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-trang-nguyen-a24.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/9502920c-f725-4683-9236-5f4f95f064fd.png"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Trạng Nguyên</h6>
-                            <span class="price_old">300.000đ</span>
-                            <span>250.000đ</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-            <div class="owl-item" style="width: 330px;">
-                <div class="latest-prdouct__slider__item">
-
-                    <a href="/cay-si-bonsai-a25.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/9dfdbbd2-5585-4c16-8739-05e593663c81.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Si Bonsai</h6>
-                            <span class="price_old">185.000đ</span>
-                            <span>155.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-phat-loc-thuyen-a26.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/b0551186-ea6d-497b-baad-479105815511.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Phát Lộc Thuyền</h6>
-                            <span class="price_old"></span>
-                            <span>350.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-ngan-hau-a27.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/2d3477df-b74b-4e87-88f8-a1ffc12db3da.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Ngân Hậu</h6>
-                            <span class="price_old"></span>
-                            <span>250.000đ</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-            <div class="owl-item" style="width: 330px;">
-                <div class="latest-prdouct__slider__item">
-
-
-
-                    <a href="/cay-luoi-ho-a28.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/610bfbdb-d58e-4e27-a1f6-bbaea738aa9c.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Lưỡi Hổ</h6>
-                            <span class="price_old">220.000đ</span>
-                            <span>200.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-lan-quan-tu-a29.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/5db5bb21-cfd0-4e61-b5f2-968682590f7b.png"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Lan Quân Tử</h6>
-                            <span class="price_old"></span>
-                            <span>250.000đ</span>
-                        </div>
-                    </a>
-
-                    <a href="/cay-huy-hoang-a30.html" class="latest-product__item">
-                        <div class="latest-product__item__pic" style="width: 35%;">
-                            <img src="static/shop/assets/img-demo/98cc60e7-0e90-487a-b692-b7c8f5e54dac.jpg"
-                                alt="" style="width: 100%;">
-                        </div>
-                        <div class="latest-product__item__text">
-                            <h6>Cây Huy Hoàng</h6>
-                            <span class="price_old"></span>
-                            <span>199.000đ</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
+             style="transform: translate3d(-660px, 0px, 0px); transition: all 1.2s ease 0s; width: 1980px;">
+            {% render_share_shop "product-slider.html" items_product_hot %}
         </div>
     </div>
-    <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span
-                class="fa fa-angle-left"><span></span></span></button><button type="button"
-            role="presentation" class="owl-next"><span
-                class="fa fa-angle-right"><span></span></span></button></div>
+    <div class="owl-nav">
+        <button type="button" role="presentation" class="owl-prev"><span
+                class="fa fa-angle-left"><span></span></span></button>
+        <button type="button"
+                role="presentation" class="owl-next"><span
+                class="fa fa-angle-right"><span></span></span></button>
+    </div>
     <div class="owl-dots disabled"></div>
 </div>
