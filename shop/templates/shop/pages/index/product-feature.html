@@ -37,11 +37,11 @@
                         <ul class="featured__item__pic__hover">
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="/cay-van-loc-a22.html"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a href="{{item.get_absolute_url}}"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="featured__item__text">
-                        <h6><a href="/cay-van-loc-a22.html">{{ item.name }}</a></h6>
+                        <h6><a href="{{item.get_absolute_url}}">{{ item.name }}</a></h6>
                         <h5>{{ item.price_real|format_currency_vietnam }}</h5>
                     </div>
                 </div>

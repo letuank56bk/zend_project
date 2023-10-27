@@ -1,262 +1,112 @@
 {% extends "shop/layout.html" %}
+{% load format_currency_vietnam %}
+{% load get_price_old %}
 
 {% load static %}
 
 {% block content %}
-<!-- Product Details Section Begin -->
-<section class="product-details spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="product__details__pic">
-                    <div class="product__details__pic__item">
-                        <img class="product__details__pic__item--large"
-                            src="static/shop/assets/img-demo/2bacb687-2781-49b0-ac36-bca2ae23abda.jpg" alt="">
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                 src="{{ item_product.image.url }}" alt="">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="product__details__text">
-                    <h3>Cây Vạn Lộc</h3>
-                    <div class="product__details__price d-flex align-items-center">
-                        <span>190.000đ</span>
-                        <span class="price_old">200.000đ</span>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3>{{ item_product.name }}</h3>
+                        <div class="product__details__price d-flex align-items-center">
+                            <span>{{ item_product.price_real|format_currency_vietnam }}</span>
+                            <span class="price_old">{% get_price_old item_product.price item_product.price_sale %}</span>
+                        </div>
+                        <p>{{ item_product.summary }}</p>
+                        <form action="/them-vao-gio-hang.html" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="4NuTQlnDuJ9gFawf5XMCr8bvXRsq0xzybWANmkwvbCiEUDqcYYXYNu0CunzMzJDx">
+                            <div class="product__details__quantity">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <span class="dec qtybtn">-</span>
+                                        <input type="text" value="1" name="quantity">
+                                        <span class="inc qtybtn">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" value="22" name="id">
+                            <button type="submit" class="primary-btn">Thêm Vào Giỏ Hàng</button>
+                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        </form>
+                        <ul>
+                            <li><b>Chất lượng</b> <span>Cam kết cây cảnh đạt tiêu chuẩn</span></li>
+                            <li><b>Giao Hàng</b> <span>Trong vòng 3 ngày từ ngày đặt</span></li>
+                            <li><b>Hỗ Trợ</b> <span> Từ nhân viên có kinh nghiệm</span></li>
+                            <li><b>Share on</b>
+                                <div class="share">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <p>Là cây thân thảo, có lá màu hồng đậm khi già, lá non màu hồng nhạt, có rễ chùm, dễ sống và
-                        chăm sóc. Hoa màu trắng, có rễ trùm nên rất dễ sống và chăm sóc.</p>
-                    <form action="/them-vao-gio-hang.html" method="post">
-                        <input type="hidden" name="csrfmiddlewaretoken"
-                            value="4NuTQlnDuJ9gFawf5XMCr8bvXRsq0xzybWANmkwvbCiEUDqcYYXYNu0CunzMzJDx">
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <span class="dec qtybtn">-</span>
-                                    <input type="text" value="1" name="quantity">
-                                    <span class="inc qtybtn">+</span>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab" style="padding-top: 20px;">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6 class="title_detail_product">Thông tin sản phẩm</h6>
+                                    {{ item_product.content|safe }}
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" value="22" name="id">
-                        <button type="submit" class="primary-btn">Thêm Vào Giỏ Hàng</button>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                    </form>
-                    <ul>
-                        <li><b>Chất lượng</b> <span>Cam kết cây cảnh đạt tiêu chuẩn</span></li>
-                        <li><b>Giao Hàng</b> <span>Trong vòng 3 ngày từ ngày đặt</span></li>
-                        <li><b>Hỗ Trợ</b> <span> Từ nhân viên có kinh nghiệm</span></li>
-                        <li><b>Share on</b>
-                            <div class="share">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </li>
-                    </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-12">
-                <div class="product__details__tab" style="padding-top: 20px;">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                            <div class="product__details__tab__desc">
-                                <h6 class="title_detail_product">Thông tin sản phẩm</h6>
-                                <p>L&agrave; c&acirc;y th&acirc;n thảo, c&oacute; l&aacute; m&agrave;u hồng đậm khi
-                                    gi&agrave;, l&aacute; non m&agrave;u hồng nhạt, c&oacute; rễ ch&ugrave;m, dễ
-                                    sống v&agrave; chăm s&oacute;c. Hoa m&agrave;u trắng, c&oacute; rễ tr&ugrave;m
-                                    n&ecirc;n rất dễ sống v&agrave; chăm s&oacute;c. &Yacute; nghĩa phong thuỷ: Mang
-                                    lại ph&uacute; qu&yacute;, tiền t&agrave;i. M&agrave;u đỏ của c&acirc;y thể hiện
-                                    sự thịnh vượng, tốt l&agrave;nh, may mắn v&agrave; ph&aacute;t lộc. C&acirc;y
-                                    hợp với người mệnh Hoả hoặc Thổ, gi&uacute;p mang đến t&agrave;i lộc v&agrave;
-                                    may mắn<br />C&ocirc;ng dụng thanh lọc kh&ocirc;ng kh&iacute;, hấp thụ
-                                    c&aacute;c chất hữu cơ g&acirc;y bệnh, ph&ugrave; hợp để b&agrave;n l&agrave;m
-                                    việc, b&agrave;n uống nước, trang tr&iacute; qu&aacute;n c&agrave; ph&ecirc;,
-                                    l&agrave;m qu&agrave; tặng, qu&agrave; trang tr&iacute;, gửi gắm lời ch&uacute;c
-                                    tốt đẹp đến người nhận.</p>
-                                <p>L&agrave; c&acirc;y th&acirc;n thảo, c&oacute; l&aacute; m&agrave;u hồng đậm khi
-                                    gi&agrave;, l&aacute; non m&agrave;u hồng nhạt, c&oacute; rễ ch&ugrave;m, dễ
-                                    sống v&agrave; chăm s&oacute;c. Hoa m&agrave;u trắng, c&oacute; rễ tr&ugrave;m
-                                    n&ecirc;n rất dễ sống v&agrave; chăm s&oacute;c. &Yacute; nghĩa phong thuỷ: Mang
-                                    lại ph&uacute; qu&yacute;, tiền t&agrave;i. M&agrave;u đỏ của c&acirc;y thể hiện
-                                    sự thịnh vượng, tốt l&agrave;nh, may mắn v&agrave; ph&aacute;t lộc. C&acirc;y
-                                    hợp với người mệnh Hoả hoặc Thổ, gi&uacute;p mang đến t&agrave;i lộc v&agrave;
-                                    may mắn<br />C&ocirc;ng dụng thanh lọc kh&ocirc;ng kh&iacute;, hấp thụ
-                                    c&aacute;c chất hữu cơ g&acirc;y bệnh, ph&ugrave; hợp để b&agrave;n l&agrave;m
-                                    việc, b&agrave;n uống nước, trang tr&iacute; qu&aacute;n c&agrave; ph&ecirc;,
-                                    l&agrave;m qu&agrave; tặng, qu&agrave; trang tr&iacute;, gửi gắm lời ch&uacute;c
-                                    tốt đẹp đến người nhận.</p>
-                                <p>L&agrave; c&acirc;y th&acirc;n thảo, c&oacute; l&aacute; m&agrave;u hồng đậm khi
-                                    gi&agrave;, l&aacute; non m&agrave;u hồng nhạt, c&oacute; rễ ch&ugrave;m, dễ
-                                    sống v&agrave; chăm s&oacute;c. Hoa m&agrave;u trắng, c&oacute; rễ tr&ugrave;m
-                                    n&ecirc;n rất dễ sống v&agrave; chăm s&oacute;c. &Yacute; nghĩa phong thuỷ: Mang
-                                    lại ph&uacute; qu&yacute;, tiền t&agrave;i. M&agrave;u đỏ của c&acirc;y thể hiện
-                                    sự thịnh vượng, tốt l&agrave;nh, may mắn v&agrave; ph&aacute;t lộc. C&acirc;y
-                                    hợp với người mệnh Hoả hoặc Thổ, gi&uacute;p mang đến t&agrave;i lộc v&agrave;
-                                    may mắn<br />C&ocirc;ng dụng thanh lọc kh&ocirc;ng kh&iacute;, hấp thụ
-                                    c&aacute;c chất hữu cơ g&acirc;y bệnh, ph&ugrave; hợp để b&agrave;n l&agrave;m
-                                    việc, b&agrave;n uống nước, trang tr&iacute; qu&aacute;n c&agrave; ph&ecirc;,
-                                    l&agrave;m qu&agrave; tặng, qu&agrave; trang tr&iacute;, gửi gắm lời ch&uacute;c
-                                    tốt đẹp đến người nhận.</p>
-                                <p>L&agrave; c&acirc;y th&acirc;n thảo, c&oacute; l&aacute; m&agrave;u hồng đậm khi
-                                    gi&agrave;, l&aacute; non m&agrave;u hồng nhạt, c&oacute; rễ ch&ugrave;m, dễ
-                                    sống v&agrave; chăm s&oacute;c. Hoa m&agrave;u trắng, c&oacute; rễ tr&ugrave;m
-                                    n&ecirc;n rất dễ sống v&agrave; chăm s&oacute;c. &Yacute; nghĩa phong thuỷ: Mang
-                                    lại ph&uacute; qu&yacute;, tiền t&agrave;i. M&agrave;u đỏ của c&acirc;y thể hiện
-                                    sự thịnh vượng, tốt l&agrave;nh, may mắn v&agrave; ph&aacute;t lộc. C&acirc;y
-                                    hợp với người mệnh Hoả hoặc Thổ, gi&uacute;p mang đến t&agrave;i lộc v&agrave;
-                                    may mắn<br />C&ocirc;ng dụng thanh lọc kh&ocirc;ng kh&iacute;, hấp thụ
-                                    c&aacute;c chất hữu cơ g&acirc;y bệnh, ph&ugrave; hợp để b&agrave;n l&agrave;m
-                                    việc, b&agrave;n uống nước, trang tr&iacute; qu&aacute;n c&agrave; ph&ecirc;,
-                                    l&agrave;m qu&agrave; tặng, qu&agrave; trang tr&iacute;, gửi gắm lời ch&uacute;c
-                                    tốt đẹp đến người nhận.</p>
-                                <p>L&agrave; c&acirc;y th&acirc;n thảo, c&oacute; l&aacute; m&agrave;u hồng đậm khi
-                                    gi&agrave;, l&aacute; non m&agrave;u hồng nhạt, c&oacute; rễ ch&ugrave;m, dễ
-                                    sống v&agrave; chăm s&oacute;c. Hoa m&agrave;u trắng, c&oacute; rễ tr&ugrave;m
-                                    n&ecirc;n rất dễ sống v&agrave; chăm s&oacute;c. &Yacute; nghĩa phong thuỷ: Mang
-                                    lại ph&uacute; qu&yacute;, tiền t&agrave;i. M&agrave;u đỏ của c&acirc;y thể hiện
-                                    sự thịnh vượng, tốt l&agrave;nh, may mắn v&agrave; ph&aacute;t lộc. C&acirc;y
-                                    hợp với người mệnh Hoả hoặc Thổ, gi&uacute;p mang đến t&agrave;i lộc v&agrave;
-                                    may mắn<br />C&ocirc;ng dụng thanh lọc kh&ocirc;ng kh&iacute;, hấp thụ
-                                    c&aacute;c chất hữu cơ g&acirc;y bệnh, ph&ugrave; hợp để b&agrave;n l&agrave;m
-                                    việc, b&agrave;n uống nước, trang tr&iacute; qu&aacute;n c&agrave; ph&ecirc;,
-                                    l&agrave;m qu&agrave; tặng, qu&agrave; trang tr&iacute;, gửi gắm lời ch&uacute;c
-                                    tốt đẹp đến người nhận.</p>
+        </div>
+    </section>
+    <!-- Product Details Section End -->
+
+    <!-- Related Product Section Begin -->
+    <section class="related-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related__product__title">
+                        <h2>Sản Phẩm Liên Quan</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                {% for item in item_product_related %}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg"
+                                 data-setbg="{{ item.image.url }}">
+                                <ul class="product__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="{{item.get_absolute_url}}"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <h6><a href="{{item.get_absolute_url}}">{{ item.name }}</a></h6>
+                                <h6 class="price_old">{% get_price_old item_product.price item_product.price_sale %}</h6>
+                                <h5>{{ item_product.price_real|format_currency_vietnam }}</h5>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
+
             </div>
         </div>
-    </div>
-</section>
-<!-- Product Details Section End -->
-
-<!-- Related Product Section Begin -->
-<section class="related-product">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title related__product__title">
-                    <h2>Sản Phẩm Liên Quan</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-
-
-
-
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                        data-setbg="static/shop/assets/img-demo/edf91abb-3370-4555-9403-07b481bfb9fb.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="/cay-thinh-vuong-a37.html"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="/cay-thinh-vuong-a37.html">Cây Thịnh Vượng</a></h6>
-                        <h6 class="price_old"></h6>
-                        <h5>175.000đ</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                        data-setbg="static/shop/assets/img-demo/5061a278-9654-4762-955b-ba44b947d077.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="/cay-duoi-cong-xanh-a36.html"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="/cay-duoi-cong-xanh-a36.html">Cây Đuôi Công Xanh</a></h6>
-                        <h6 class="price_old">220.000đ</h6>
-                        <h5>200.000đ</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                        data-setbg="static/shop/assets/img-demo/6b27e810-3fc0-407d-a145-76d4f983ee3a.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="/cay-duoi-cong-hong-a35.html"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="/cay-duoi-cong-hong-a35.html">Cây Đuôi Công Hồng</a></h6>
-                        <h6 class="price_old"></h6>
-                        <h5>175.000đ</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                        data-setbg="static/shop/assets/img-demo/aab77653-f146-4ecd-9acb-e8dfa1ec69f3.png">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="/cay-nha-dam-a34.html"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="/cay-nha-dam-a34.html">Cây Nha Đam</a></h6>
-                        <h6 class="price_old"></h6>
-                        <h5>125.000đ</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                        data-setbg="static/shop/assets/img-demo/27799c35-c142-4895-83c0-5c9e47bc7d4a.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="/cay-trau-ba-vang-a33.html"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="/cay-trau-ba-vang-a33.html">Cây Trầu Bà Vàng</a></h6>
-                        <h6 class="price_old">200.000đ</h6>
-                        <h5>180.000đ</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                        data-setbg="static/shop/assets/img-demo/182074b7-64fc-4a3d-88bc-faa3f351ca4c.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="/cay-co-lan-chi-a32.html"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="/cay-co-lan-chi-a32.html">Cây Cỏ Lan Chi</a></h6>
-                        <h6 class="price_old"></h6>
-                        <h5>200.000đ</h5>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-<!-- Related Product Section End -->
+    </section>
+    <!-- Related Product Section End -->
 {% endblock %}

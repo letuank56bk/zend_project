@@ -47,3 +47,20 @@ def index(request):
         "items_product_random": items_product_random,
         "items_category": items_category
     })
+
+def product(request, product_slug, product_id):
+    # Tìm kiếm trong DB, nếu có trả ra thông tin, nếu không phản hồi lại 404
+    item_product = get_object_or_404(Product, id=product_id, slug=product_slug, status=APP_VALUE_STATUS_ACTIVE)
+    # Bài viết liên quan
+    # --> exclude: Loại bỏ các bài viết có tên giống với bài đang hiển thị (thông qua slug) trong mục bài viết liện quan
+    # --> [:SETTING_ARTICLE_TOTAL_ITEMS_RECENT] chỉ lấy 6 phần từ đầu tiên của kết quả trả về --> tránh trường hợp show tất cả dữ liệu
+    item_product_related = (Product.objects
+                            .filter(category=item_product.category, status=APP_VALUE_STATUS_ACTIVE)
+                            .order_by("-id")
+                            .exclude(id=product_id)[:SETTING_PRODUCT_TOTAL_ITEMS_RELATED])
+
+    return render(request, APP_PATH_PAGE + 'detail.html', {
+        "title_page": item_product.name,
+        "item_product": item_product,
+        "item_product_related": item_product_related,
+    })

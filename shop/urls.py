@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.index, name="index"),
+    re_path(r"^(?P<product_slug>[\w-]+)-a(?P<product_id>\d+)\.html$", views.product, name="product"),
 
     # Thư viên tinymce --> trình biên soạn HTML
     path('tinymce/', include('tinymce.urls')),

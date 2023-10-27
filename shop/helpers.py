@@ -41,7 +41,7 @@ def chunked(items, quantity_per_group):
     result = []
     for i in range(0, len(items), quantity_per_group):
         chunk = items[i:i + quantity_per_group]
-
         result.append(chunk)
-
     return result
+
+
