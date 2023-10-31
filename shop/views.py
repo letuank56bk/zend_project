@@ -28,17 +28,16 @@ def index(request):
     items_product_lastest = chunked(items_product_lastest, SETTING_PRODUCT_TOTAL_ITEMS_PER_SLIDE)
 
     items_product_hot = Product.objects.filter(special=True, status=APP_VALUE_STATUS_ACTIVE).order_by("-total_sold")[
-                            :SETTING_PRODUCT_TOTAL_ITEMS_HOT_INDEX]
+                        :SETTING_PRODUCT_TOTAL_ITEMS_HOT_INDEX]
 
     # 1 nhóm sẽ có 3 sản phẩm
     items_product_hot = chunked(items_product_hot, SETTING_PRODUCT_TOTAL_ITEMS_PER_SLIDE)
 
     items_product_random = Product.objects.filter(special=True, status=APP_VALUE_STATUS_ACTIVE).order_by("?")[
-                            :SETTING_PRODUCT_TOTAL_ITEMS_RANDOM_INDEX]
+                           :SETTING_PRODUCT_TOTAL_ITEMS_RANDOM_INDEX]
 
     # 1 nhóm sẽ có 3 sản phẩm
     items_product_random = chunked(items_product_random, SETTING_PRODUCT_TOTAL_ITEMS_PER_SLIDE)
-
 
     return render(request, APP_PATH_PAGE + 'index.html', {
         "title_page": "Trang chủ",
@@ -47,6 +46,7 @@ def index(request):
         "items_product_random": items_product_random,
         "items_category": items_category
     })
+
 
 def product(request, product_slug, product_id):
     # Tìm kiếm trong DB, nếu có trả ra thông tin, nếu không phản hồi lại 404
@@ -63,4 +63,20 @@ def product(request, product_slug, product_id):
         "title_page": item_product.name,
         "item_product": item_product,
         "item_product_related": item_product_related,
+    })
+
+
+def category(request, category_slug):
+    item_category = None
+    if category_slug != "shop":
+        item_category = get_object_or_404(Category, slug=category_slug, status=APP_VALUE_STATUS_ACTIVE)
+
+    item_products = Product.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("-id")
+
+    if item_category:
+        item_products = Product.objects.filter(category=item_category, status=APP_VALUE_STATUS_ACTIVE).order_by("-id")
+
+    return render(request, APP_PATH_PAGE + 'category.html', {
+        "item_category": item_category,
+        "item_products": item_products,
     })

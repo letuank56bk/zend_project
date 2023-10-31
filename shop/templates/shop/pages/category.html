@@ -1,178 +1,30 @@
 {% extends "shop/layout.html" %}
+{% load render_share_shop %}
 
 {% load static %}
 
 {% block content %}
-<section class="product spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-5">
-                {% include 'shop/pages/category/sidebar.html' %}
-            </div>
-            <div class="col-lg-9 col-md-7">
-                <div class="filter__item">
-                    <div class="row justify-content-between">
-                        {% include 'shop/pages/category/order-and-count.html' %}
-                    </div>
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    {% include 'shop/pages/category/sidebar.html' %}
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/b0551186-ea6d-497b-baad-479105815511.jpg" style="background-image: url(&quot;/static/shop/assets/img-demo/b0551186-ea6d-497b-baad-479105815511.jpg&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-phat-loc-thuyen-a26.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-phat-loc-thuyen-a26.html">Cây Phát Lộc Thuyền</a></h6>
-                                <h6 class="price_old"></h6>
-                                <h5>350.000đ</h5>
-                            </div>
+                <div class="col-lg-9 col-md-7">
+                    <div class="filter__item">
+                        <div class="row justify-content-between">
+                            {% include 'shop/pages/category/order-and-count.html' %}
                         </div>
                     </div>
-                
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/9502920c-f725-4683-9236-5f4f95f064fd.png" style="background-image: url(&quot;/static/shop/assets/img-demo/9502920c-f725-4683-9236-5f4f95f064fd.png&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-trang-nguyen-a24.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-trang-nguyen-a24.html">Cây Trạng Nguyên</a></h6>
-                                <h6 class="price_old">300.000đ</h6>
-                                <h5>250.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/2d3477df-b74b-4e87-88f8-a1ffc12db3da.jpg" style="background-image: url(&quot;/static/shop/assets/img-demo/2d3477df-b74b-4e87-88f8-a1ffc12db3da.jpg&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-ngan-hau-a27.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-ngan-hau-a27.html">Cây Ngân Hậu</a></h6>
-                                <h6 class="price_old"></h6>
-                                <h5>250.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/5db5bb21-cfd0-4e61-b5f2-968682590f7b.png" style="background-image: url(&quot;/static/shop/assets/img-demo/5db5bb21-cfd0-4e61-b5f2-968682590f7b.png&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-lan-quan-tu-a29.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-lan-quan-tu-a29.html">Cây Lan Quân Tử</a></h6>
-                                <h6 class="price_old"></h6>
-                                <h5>250.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/610bfbdb-d58e-4e27-a1f6-bbaea738aa9c.jpg" style="background-image: url(&quot;/static/shop/assets/img-demo/610bfbdb-d58e-4e27-a1f6-bbaea738aa9c.jpg&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-luoi-ho-a28.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-luoi-ho-a28.html">Cây Lưỡi Hổ</a></h6>
-                                <h6 class="price_old">220.000đ</h6>
-                                <h5>200.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/e7b94abc-2572-401a-9557-3aae8ad4083e.jpg" style="background-image: url(&quot;/static/shop/assets/img-demo/e7b94abc-2572-401a-9557-3aae8ad4083e.jpg&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-hanh-phuc-a31.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-hanh-phuc-a31.html">Cây Hạnh Phúc</a></h6>
-                                <h6 class="price_old">215.000đ</h6>
-                                <h5>200.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/182074b7-64fc-4a3d-88bc-faa3f351ca4c.jpg" style="background-image: url(&quot;/static/shop/assets/img-demo/182074b7-64fc-4a3d-88bc-faa3f351ca4c.jpg&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-co-lan-chi-a32.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-co-lan-chi-a32.html">Cây Cỏ Lan Chi</a></h6>
-                                <h6 class="price_old"></h6>
-                                <h5>200.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/5061a278-9654-4762-955b-ba44b947d077.jpg" style="background-image: url(&quot;/static/shop/assets/img-demo/5061a278-9654-4762-955b-ba44b947d077.jpg&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-duoi-cong-xanh-a36.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-duoi-cong-xanh-a36.html">Cây Đuôi Công Xanh</a></h6>
-                                <h6 class="price_old">220.000đ</h6>
-                                <h5>200.000đ</h5>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="/static/shop/assets/img-demo/98cc60e7-0e90-487a-b692-b7c8f5e54dac.jpg" style="background-image: url(&quot;/static/shop/assets/img-demo/98cc60e7-0e90-487a-b692-b7c8f5e54dac.jpg&quot;);">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="/cay-huy-hoang-a30.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="/cay-huy-hoang-a30.html">Cây Huy Hoàng</a></h6>
-                                <h6 class="price_old"></h6>
-                                <h5>199.000đ</h5>
-                            </div>
-                        </div>
-                    </div>        
-                </div>
+                    <div class="row">
 
-                {% include 'shop/pages/category/pagination.html' %}
+                        {% render_share_shop "product-grid.html" item_products %}
+
+                    </div>
+
+                    {% include 'shop/pages/category/pagination.html' %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}

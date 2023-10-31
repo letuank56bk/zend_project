@@ -1,7 +1,7 @@
 {% extends "shop/layout.html" %}
 {% load format_currency_vietnam %}
 {% load get_price_old %}
-
+{% load render_share_shop %}
 {% load static %}
 
 {% block content %}
@@ -85,25 +85,7 @@
             </div>
             <div class="row">
 
-                {% for item in item_product_related %}
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="{{ item.image.url }}">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="{{item.get_absolute_url}}"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="{{item.get_absolute_url}}">{{ item.name }}</a></h6>
-                                <h6 class="price_old">{% get_price_old item_product.price item_product.price_sale %}</h6>
-                                <h5>{{ item_product.price_real|format_currency_vietnam }}</h5>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+                {% render_share_shop "product-grid.html" items_product_related %}
 
             </div>
         </div>
