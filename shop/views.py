@@ -71,7 +71,10 @@ def category(request, category_slug):
     if category_slug != "shop":
         item_category = get_object_or_404(Category, slug=category_slug, status=APP_VALUE_STATUS_ACTIVE)
 
-    item_products = Product.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("-id")
+    params = {
+        "order": request.GET.get("order") if request.GET.get("order") == "price" else "-price"
+    }
+    item_products = Product.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by(params["order"] + "_real")
 
     if item_category:
         item_products = Product.objects.filter(category=item_category, status=APP_VALUE_STATUS_ACTIVE).order_by("-id")
@@ -79,4 +82,5 @@ def category(request, category_slug):
     return render(request, APP_PATH_PAGE + 'category.html', {
         "item_category": item_category,
         "item_products": item_products,
+        "params": params
     })

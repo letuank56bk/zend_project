@@ -2,9 +2,9 @@
     <div class="filter__sort">
         <span>Sắp Xếp</span>
         <select id="sort-product">
-            <option value="?order=-price" selected>GIÁ GIẢM DẦN</option>
+            <option value="?order=-price" {% if params.order == "-price" %} selected {% endif %}>GIÁ GIẢM DẦN</option>
 
-            <option value="?order=price">GIÁ TĂNG DẦN</option>
+            <option value="?order=price" {% if params.order == "price" %} selected {% endif %}>GIÁ TĂNG DẦN</option>
         </select>
     </div>
 </div>
