@@ -27,4 +27,5 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         # category_slug --> là phần slug ở bên views, phần này sẽ được truyền giá trị slug đã nhập trong DB
-        return reverse("category", kwargs={"category_slug": self.slug})
+        # shop -> lay tu app_name trong url
+        return reverse("shop:category", kwargs={"category_slug": self.slug})

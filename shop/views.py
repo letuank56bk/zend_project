@@ -54,7 +54,7 @@ def product(request, product_slug, product_id):
     # Bài viết liên quan
     # --> exclude: Loại bỏ các bài viết có tên giống với bài đang hiển thị (thông qua slug) trong mục bài viết liện quan
     # --> [:SETTING_ARTICLE_TOTAL_ITEMS_RECENT] chỉ lấy 6 phần từ đầu tiên của kết quả trả về --> tránh trường hợp show tất cả dữ liệu
-    item_product_related = (Product.objects
+    items_product_related = (Product.objects
                             .filter(category=item_product.category, status=APP_VALUE_STATUS_ACTIVE)
                             .order_by("-id")
                             .exclude(id=product_id)[:SETTING_PRODUCT_TOTAL_ITEMS_RELATED])
@@ -62,7 +62,7 @@ def product(request, product_slug, product_id):
     return render(request, APP_PATH_PAGE + 'detail.html', {
         "title_page": item_product.name,
         "item_product": item_product,
-        "item_product_related": item_product_related,
+        "items_product_related": items_product_related,
     })
 
 
@@ -79,7 +79,11 @@ def category(request, category_slug):
     if item_category:
         item_products = Product.objects.filter(category=item_category, status=APP_VALUE_STATUS_ACTIVE).order_by("-id")
 
+    items_category = Category.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
+                     :SETTING_CATEGORY_TOTAL_ITEMS_SIDEBAR]
+
     return render(request, APP_PATH_PAGE + 'category.html', {
+        "items_category": items_category,
         "item_category": item_category,
         "item_products": item_products,
         "params": params

@@ -45,7 +45,8 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         # article_slug --> là phần slug ở bên views, phần này sẽ được truyền giá trị slug đã nhập trong DB
-        return reverse("product", kwargs={"product_slug": self.slug, "product_id": self.id})
+        # shop -> lay tu app_name trong url
+        return reverse("shop:product", kwargs={"product_slug": self.slug, "product_id": self.id})
 
     # Tự động gán giá trị cho price_real mỗi khi người dùng lưu thông tin
     def save(self, *args, **kwargs):
