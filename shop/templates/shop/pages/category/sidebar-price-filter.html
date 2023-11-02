@@ -1,20 +1,22 @@
 <h4>Giá Tiền</h4>
 <div class="price-range-wrap">
     <div class="range-slider">
-        <form action="/cay-canh-de-ban.html" method="get">
+        {# 4.6.1(5:00)#}
+        <form action="{% if item_category %} {{ item_category.get_absolute_url }} {% else %}/shop.html{% endif %}"
+              method="get">
             <div class="row justify-content-between">
                 <div class="col">
                     <input type="text" class="form-control" name="minPrice" placeholder="Từ"
-                        value="">
+                           value="{{ params.minPrice }}">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" name="maxPrice"
-                        placeholder="Đến" value="">
-                </div>
+                    <input type="text" class="form-control" name="maxPrice" placeholder="Đến"
+                    value="{{ params.maxPrice }}">
             </div>
-
-
-            <button type="submit" class="price-filter-btn">Áp Dụng</button>
-        </form>
     </div>
+
+
+    <button type="submit" class="price-filter-btn">Áp Dụng</button>
+    </form>
+</div>
 </div>

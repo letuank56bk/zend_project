@@ -55,9 +55,9 @@ def product(request, product_slug, product_id):
     # --> exclude: Loại bỏ các bài viết có tên giống với bài đang hiển thị (thông qua slug) trong mục bài viết liện quan
     # --> [:SETTING_ARTICLE_TOTAL_ITEMS_RECENT] chỉ lấy 6 phần từ đầu tiên của kết quả trả về --> tránh trường hợp show tất cả dữ liệu
     items_product_related = (Product.objects
-                            .filter(category=item_product.category, status=APP_VALUE_STATUS_ACTIVE)
-                            .order_by("-id")
-                            .exclude(id=product_id)[:SETTING_PRODUCT_TOTAL_ITEMS_RELATED])
+                             .filter(category=item_product.category, status=APP_VALUE_STATUS_ACTIVE)
+                             .order_by("-id")
+                             .exclude(id=product_id)[:SETTING_PRODUCT_TOTAL_ITEMS_RELATED])
 
     return render(request, APP_PATH_PAGE + 'detail.html', {
         "title_page": item_product.name,
@@ -72,12 +72,18 @@ def category(request, category_slug):
         item_category = get_object_or_404(Category, slug=category_slug, status=APP_VALUE_STATUS_ACTIVE)
 
     params = {
-        "order": request.GET.get("order") if request.GET.get("order") == "price" else "-price"
+        "order": request.GET.get("order") if request.GET.get("order") == "price" else "-price",
+        "minPrice": request.GET.get("minPrice", ""),  # -> Nếu không có giá trị để mặc định là ""
+        "maxPrice": request.GET.get("maxPrice", ""),  # -> Nếu không có giá trị để mặc định là ""
     }
     item_products = Product.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by(params["order"] + "_real")
 
     if item_category:
-        item_products = Product.objects.filter(category=item_category, status=APP_VALUE_STATUS_ACTIVE).order_by("-id")
+        item_products = item_products.filter(category=item_category, status=APP_VALUE_STATUS_ACTIVE)
+    if params["minPrice"]:
+        item_products = item_products.filter(price_real__gte=params["minPrice"])
+    if params["maxPrice"]:
+        item_products = item_products.filter(price_real__lte=params["maxPrice"])
 
     items_category = Category.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
                      :SETTING_CATEGORY_TOTAL_ITEMS_SIDEBAR]
