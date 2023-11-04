@@ -1,4 +1,7 @@
 <div class="product__pagination">
+    {% if  item_products.has_previous %}
+        <a href="?page={{ item_products.previous_page_number }}"><i class="fa fa-long-arrow-left"></i></a>
+    {% endif %}
 
     {% for page in paginator.page_range %}
         {% if page == item_products.number %}
@@ -8,4 +11,7 @@
         {% endif %}
     {% endfor %}
 
+    {% if  item_products.has_next %}
+        <a href="?page={{ item_products.next_page_number }}"><i class="fa fa-long-arrow-right"></i></a>
+    {% endif %}
 </div>

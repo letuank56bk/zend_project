@@ -2,7 +2,8 @@
 
 {% for item in items_planting_methods %}
     <a href="?planting={{ item.id }}" class="sidebar__item__size">
-    <span for="large" class="">
+        {# Cần ép kiểu cho item.id thì mới so sánh với planting method được #}
+        <span for="large" {% if params.planting == item.id|stringformat:"i" %}class="active"{% endif %}>
         {{ item.name }}
     </span>
     </a>
