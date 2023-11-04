@@ -15,6 +15,17 @@
                 </div>
             </div>
 
+            {# Giữ lại order theo giá khi lọc theo giá tiền #}
+            {% if params.order != "-price" %}
+                <input type="hidden" class="form-control" name="order" value="price">
+            {% endif %}
+
+            {# Giữ lại planting khi lọc theo giá tiền #}
+            {% if params.planting %}
+                <input type="hidden" class="form-control" name="planting" placeholder="Đến"
+                       value="{{ params.planting }}">
+            {% endif %}
+
             <button type="submit" class="price-filter-btn">Áp Dụng</button>
         </form>
     </div>

@@ -1,10 +1,11 @@
+{% load query_to_string %}
 <div class="col-lg-4 col-md-5">
     <div class="filter__sort">
         <span>Sắp Xếp</span>
         <select id="sort-product">
-            <option value="?order=-price" {% if params.order == "-price" %} selected {% endif %}>GIÁ GIẢM DẦN</option>
+            <option value="?{% query_to_string params "order" "-price" %}" {% if params.order == "-price" %} selected {% endif %}>GIÁ GIẢM DẦN</option>
 
-            <option value="?order=price" {% if params.order == "price" %} selected {% endif %}>GIÁ TĂNG DẦN</option>
+            <option value="?{% query_to_string params "order" "price" %}" {% if params.order == "price" %} selected {% endif %}>GIÁ TĂNG DẦN</option>
         </select>
     </div>
 </div>
