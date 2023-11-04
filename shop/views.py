@@ -91,13 +91,19 @@ def category(request, category_slug):
     items_category = Category.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
                      :SETTING_CATEGORY_TOTAL_ITEMS_SIDEBAR]
 
-    items_planting_methods= PlantingMethod.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
+    items_planting_methods = PlantingMethod.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
                      :SETTING_PLANTING_METHOD_TOTAL_ITEMS_SIDEBAR]
+
+    # Phân trang
+    paginator = Paginator(item_products, SETTING_PRODUCT_TOTAL_ITEMS_PER_PAGE)
+    page = request.GET.get("page")
+    item_products = paginator.get_page(page)
 
     return render(request, APP_PATH_PAGE + 'category.html', {
         "items_category": items_category,
         "item_category": item_category,
         "item_products": item_products,
         "items_planting_methods": items_planting_methods,
-        "params": params
+        "params": params,
+        "paginator": paginator
     })
