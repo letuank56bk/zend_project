@@ -75,6 +75,7 @@ def category(request, category_slug):
         "order": request.GET.get("order") if request.GET.get("order") == "price" else "-price",
         "minPrice": request.GET.get("minPrice", ""),  # -> Nếu không có giá trị để mặc định là ""
         "maxPrice": request.GET.get("maxPrice", ""),  # -> Nếu không có giá trị để mặc định là ""
+        "planting": request.GET.get("planting", ""),  # -> Nếu không có giá trị để mặc định là ""
     }
     item_products = Product.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by(params["order"] + "_real")
 
@@ -84,13 +85,19 @@ def category(request, category_slug):
         item_products = item_products.filter(price_real__gte=params["minPrice"])
     if params["maxPrice"]:
         item_products = item_products.filter(price_real__lte=params["maxPrice"])
+    if params["planting"]:
+        item_products = item_products.filter(planting_methods__id=params["planting"])
 
     items_category = Category.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
                      :SETTING_CATEGORY_TOTAL_ITEMS_SIDEBAR]
+
+    items_planting_methods= PlantingMethod.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
+                     :SETTING_PLANTING_METHOD_TOTAL_ITEMS_SIDEBAR]
 
     return render(request, APP_PATH_PAGE + 'category.html', {
         "items_category": items_category,
         "item_category": item_category,
         "item_products": item_products,
+        "items_planting_methods": items_planting_methods,
         "params": params
     })
