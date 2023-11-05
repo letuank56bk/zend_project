@@ -92,7 +92,10 @@ def category(request, category_slug):
                      :SETTING_CATEGORY_TOTAL_ITEMS_SIDEBAR]
 
     items_planting_methods = PlantingMethod.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
-                     :SETTING_PLANTING_METHOD_TOTAL_ITEMS_SIDEBAR]
+                             :SETTING_PLANTING_METHOD_TOTAL_ITEMS_SIDEBAR]
+
+    # Đếm số lượng item sau khi lọc -> cần làm trước khi phân trang
+    product_count = item_products.count()
 
     # Phân trang
     paginator = Paginator(item_products, SETTING_PRODUCT_TOTAL_ITEMS_PER_PAGE)
@@ -114,4 +117,5 @@ def category(request, category_slug):
         "params": params,
         "paginator": paginator,
         "items_product_lastest": items_product_lastest,
+        "product_count": product_count,
     })

@@ -1,7 +1,6 @@
 <h4>Danh Mục</h4>
-<ul>
+<ul class="list-category">
     {% for item in items_category %}
-        <li {% if item.name == item_category.name %}class="active"{% endif %}><a
-                href="{{ item.get_absolute_url }}">{{ item.name }}</a></li>
+        <li data-active="{{ item.slug }}"><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></li>
     {% endfor %}
 </ul>

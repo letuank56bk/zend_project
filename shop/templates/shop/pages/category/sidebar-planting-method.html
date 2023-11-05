@@ -1,10 +1,13 @@
 <h4>Phương Pháp Trồng</h4>
+<div class="list-planting-method">
 
-{% for item in items_planting_methods %}
-    <a href="?planting={{ item.id }}" class="sidebar__item__size">
-        {# Cần ép kiểu cho item.id thì mới so sánh với planting method được #}
-        <span for="large" {% if params.planting == item.id|stringformat:"i" %}class="active"{% endif %}>
+    {% for item in items_planting_methods %}
+        <a href="?planting={{ item.id }}" class="sidebar__item__size">
+            {# Cần ép kiểu cho item.id thì mới so sánh với planting method được #}
+            <span for="large" data-active="{{ item.id }}">
         {{ item.name }}
     </span>
-    </a>
-{% endfor %}
+        </a>
+    {% endfor %}
+
+</div>
