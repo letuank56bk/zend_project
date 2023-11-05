@@ -24,7 +24,7 @@ def index(request):
     items_product_lastest = Product.objects.filter(special=True, status=APP_VALUE_STATUS_ACTIVE).order_by("-id")[
                             :SETTING_PRODUCT_TOTAL_ITEMS_LASTEST_INDEX]
 
-    # 1 nhóm sẽ có 3 sản phẩm
+    # chia nhỏ items_product_lastest ra thành các nhóm có 3 sản phẩm
     items_product_lastest = chunked(items_product_lastest, SETTING_PRODUCT_TOTAL_ITEMS_PER_SLIDE)
 
     items_product_hot = Product.objects.filter(special=True, status=APP_VALUE_STATUS_ACTIVE).order_by("-total_sold")[
@@ -99,11 +99,19 @@ def category(request, category_slug):
     page = request.GET.get("page")
     item_products = paginator.get_page(page)
 
+    items_product_lastest = Product.objects.filter(special=True, status=APP_VALUE_STATUS_ACTIVE).order_by("-id")[
+                            :SETTING_PRODUCT_TOTAL_ITEMS_LASTEST_SIDEBAR]
+
+    # chia nhỏ items_product_lastest ra thành các nhóm có 3 sản phẩm
+    items_product_lastest = chunked(items_product_lastest, SETTING_PRODUCT_TOTAL_ITEMS_PER_SLIDE)
+
     return render(request, APP_PATH_PAGE + 'category.html', {
+        "title_page": item_category.name if item_category else "Cửa hàng",
         "items_category": items_category,
         "item_category": item_category,
         "item_products": item_products,
         "items_planting_methods": items_planting_methods,
         "params": params,
-        "paginator": paginator
+        "paginator": paginator,
+        "items_product_lastest": items_product_lastest,
     })

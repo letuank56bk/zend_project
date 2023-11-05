@@ -1,11 +1,15 @@
-<a href="/cay-siro-kim-quyt-a79.html" class="latest-product__item">
-    <div class="latest-product__item__pic" style="width: 35%;">
-        <img src="static/shop/assets/img-demo/89ab60d1-91bc-4b5b-8c48-724697d5d80c.jpg"
-            alt="" style="width: 100%;">
-    </div>
-    <div class="latest-product__item__text">
-        <h6>Cây Siro - Kim Quýt</h6>
-        <span class="price_old"></span>
-        <span>100.000đ</span>
-    </div>
-</a>
+{% load format_currency_vietnam %}
+{% load get_price_old %}
+
+{% for item in items %}
+    <a href="{{ item.get_absolute_url }}" class="latest-product__item">
+        <div class="latest-product__item__pic" style="width: 35%;">
+            <img src="{{ item.image.url }}" alt="" style="width: 100%;">
+        </div>
+        <div class="latest-product__item__text">
+            <h6>{{ item.name }}</h6>
+            <span class="price_old">{% get_price_old item.price item.price_sale %}</span>
+            <span>{{ item.price_real|format_currency_vietnam }}</span>
+        </div>
+    </a>
+{% endfor %}
