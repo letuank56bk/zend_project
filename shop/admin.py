@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 # import tất cả các class model trong folder models thông qua file __init__
-from .models import Category, Product, PlantingMethod, Contact
+from .models import Category, Product, PlantingMethod, Contact, Order, OrderItem
 
 # Import các hằng số (tên mặc định của hệ thống)
 # --> Các hằng số này được khai báo giúp code được tường mình và gọn gàng hơn
@@ -33,8 +33,9 @@ class CategoryAdmin(admin.ModelAdmin):
 # Custom trang product trong admin
 class ProductAdmin(admin.ModelAdmin):
     # list_display --> danh sách các cột sẽ hiển thị trong view admin
-    list_display = ('display_image', 'name', 'category', 'status', 'ordering', 'special', 'price_formatted', 'price_sale_formatted',
-    'price_real_formatted', 'get_planting_methods', 'total_sold')
+    list_display = (
+        'display_image', 'name', 'category', 'status', 'ordering', 'special', 'price_formatted', 'price_sale_formatted',
+        'price_real_formatted', 'get_planting_methods', 'total_sold')
     # list_filter --> tạo bộ lọc với các trường được liệt kê
     list_filter = ['status', 'special', 'planting_methods', 'category']
     # search_fields --> tạo thêm ô tìm kiếm theo cột name
@@ -120,10 +121,51 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
+class OrderAdmin(admin.ModelAdmin):
+    readonly_fields = ("code", "name", "email", "phone", "created", "quantity", "total_formatted", "address", "total")
+    fields = ("status", "code", "name", "email", "phone", "created", "quantity", "total_formatted", "address")
+    list_display = ("code", "name", "email", "phone", "created", "quantity", "total_formatted", "status")
+    list_filter = ["status"]
+    search_fields = ["name"]
+
+    # Tự động sinh ra slug từ tên của category (sẽ có lỗi xảy ra nếu tên category là tiếng việt có dấu)
+    # --> prepopulated_fields = {'slug': ('name',)}
+    # custome tạo slug tự động, loại bỏ lỗi đối với tiếng việt
+    class Media:
+        js = ADMIN_SRC_JS
+        css = ADMIN_SRC_CSS
+
+    # Khong cho tao moi trong giao dien admin
+    def has_add_permission(self, request):
+        return False
+
+    @admin.display(description="Total")
+    def total_formatted(self, obj):
+        return format_currency_vietnam(obj.total)
+
+
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ("order", "product", "quantity", "price_formatted", "total_formatted")
+
+    # Khong cho tao moi trong giao dien admin
+    def has_add_permission(self, request):
+        return False
+
+    @admin.display(description="Total")
+    def price_formatted(self, obj):
+        return format_currency_vietnam(obj.price)
+
+    @admin.display(description="Total")
+    def total_formatted(self, obj):
+        return format_currency_vietnam(obj.total)
+
+
 # Thêm view Category/ CategoryAdmin vào trang admin
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(PlantingMethod, PlantingMethodAdmin)
 admin.site.register(Contact, ContactAdmin)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderItem, OrderItemAdmin)
 
 admin.site.site_header = ADMIN_HEADER_NAME

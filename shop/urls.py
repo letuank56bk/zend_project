@@ -10,6 +10,10 @@ urlpatterns = [
 
     re_path(r"^(?P<product_slug>[\w-]+)-a(?P<product_id>\d+)\.html$", views.product, name="product"),
 
+    path("gio-hang.html", views.cart, name="cart"),
+
+    path("thanh-toan.html", views.checkout, name="checkout"),
+
     path("shop.html", views.category, name="shop"),
 
     path("<slug:category_slug>.html", views.category, name="category"),

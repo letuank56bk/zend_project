@@ -14,6 +14,10 @@ TABLE_CATEGORY_SHOW = "Category"
 TABLE_PRODUCT_SHOW = "Products"
 
 TABLE_CONTACT_SHOW = "Contact"
+
+TABLE_ORDER_SHOW = "Order"
+
+TABLE_ORDER_ITEM_SHOW = "Order Item"
 # Định nghĩa lại tên hiển thị trong trang admin
 
 
@@ -26,6 +30,15 @@ APP_VALUE_LAYOUT_CHOICES = (
     ('list', 'List'),
     ('grid', 'Grid')
 )
+
+APP_VALUE_STATUS_ORDER_CHOICES = (
+    ("order", "Order"),
+    ("confirm", "Confirm"),
+    ("delivery", "Delivery"),
+    ("finish", "Finish")
+)
+
+APP_VALUE_STATUS_ORDER_DEFAULT = "order"
 
 ADMIN_SRC_JS = ('my_admin/js/general.js', 'my_admin/js/jquery-3.6.0.min.js', 'my_admin/js/slugify.min.js')
 

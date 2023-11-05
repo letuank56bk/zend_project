@@ -122,3 +122,11 @@ def category(request, category_slug="shop"):
         "items_product_lastest": items_product_lastest,
         "product_count": product_count,
     })
+
+
+def cart(request):
+    return render(request, APP_PATH_PAGE + "cart.html", {})
+
+
+def checkout(request):
+    return render(request, APP_PATH_PAGE + "checkout.html", {})
