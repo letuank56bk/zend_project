@@ -66,7 +66,7 @@ def product(request, product_slug, product_id):
     })
 
 
-def category(request, category_slug):
+def category(request, category_slug="shop"):
     item_category = None
     if category_slug != "shop":
         item_category = get_object_or_404(Category, slug=category_slug, status=APP_VALUE_STATUS_ACTIVE)
@@ -76,6 +76,7 @@ def category(request, category_slug):
         "minPrice": request.GET.get("minPrice", ""),  # -> Nếu không có giá trị để mặc định là ""
         "maxPrice": request.GET.get("maxPrice", ""),  # -> Nếu không có giá trị để mặc định là ""
         "planting": request.GET.get("planting", ""),  # -> Nếu không có giá trị để mặc định là ""
+        "keyword": request.GET.get("keyword", ""),  # -> Nếu không có giá trị để mặc định là ""
     }
     item_products = Product.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by(params["order"] + "_real")
 
@@ -87,6 +88,8 @@ def category(request, category_slug):
         item_products = item_products.filter(price_real__lte=params["maxPrice"])
     if params["planting"]:
         item_products = item_products.filter(planting_methods__id=params["planting"])
+    if params["keyword"]:
+        item_products = item_products.filter(name__iregex=re.escape(params["keyword"]))
 
     items_category = Category.objects.filter(status=APP_VALUE_STATUS_ACTIVE).order_by("ordering")[
                      :SETTING_CATEGORY_TOTAL_ITEMS_SIDEBAR]

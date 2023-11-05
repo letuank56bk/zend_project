@@ -2,7 +2,7 @@
 <div class="price-range-wrap">
     <div class="range-slider">
         {# 4.6.1(5:00)#}
-        <form action="{% if item_category %} {{ item_category.get_absolute_url }} {% else %}/shop.html{% endif %}"
+        <form action="{% if item_category %} {{ item_category.get_absolute_url }} {% else %}{% url "shop:shop" %}{% endif %}"
               method="get">
             <div class="row justify-content-between">
                 <div class="col">

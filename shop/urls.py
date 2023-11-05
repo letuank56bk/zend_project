@@ -7,7 +7,11 @@ app_name = "shop"
 
 urlpatterns = [
     path("", views.index, name="index"),
+
     re_path(r"^(?P<product_slug>[\w-]+)-a(?P<product_id>\d+)\.html$", views.product, name="product"),
+
+    path("shop.html", views.category, name="shop"),
+
     path("<slug:category_slug>.html", views.category, name="category"),
 
     # Thư viên tinymce --> trình biên soạn HTML
