@@ -25,9 +25,9 @@
                             <span class="price_old">{% get_price_old item_product.price item_product.price_sale %}</span>
                         </div>
                         <p>{{ item_product.summary }}</p>
-                        <form action="/them-vao-gio-hang.html" method="post">
-                            <input type="hidden" name="csrfmiddlewaretoken"
-                                   value="4NuTQlnDuJ9gFawf5XMCr8bvXRsq0xzybWANmkwvbCiEUDqcYYXYNu0CunzMzJDx">
+                        <form action="{% url "shop:add_to_cart" %}" method="post">
+                            {# Tất cả các form post đều phải có csrf token để chống gửi thông tin giả mạo lên server#}
+                            {% csrf_token %}
                             <div class="product__details__quantity">
                                 <div class="quantity">
                                     <div class="pro-qty">
@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" value="22" name="id">
+                            <input type="hidden" value="{{ item_product.id }}" name="id">
                             <button type="submit" class="primary-btn">Thêm Vào Giỏ Hàng</button>
                             <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         </form>

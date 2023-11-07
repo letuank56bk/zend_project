@@ -1,5 +1,7 @@
 import re
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+# Thư viện giúp lấy đường link trực tiếp quan name từ file urls
+from django.urls import reverse
 # import tất cả các class model trong folder models thông qua file __init__
 from .models import *
 # Thư viện xử lý về thời gian
@@ -125,7 +127,79 @@ def category(request, category_slug="shop"):
 
 
 def cart(request):
-    return render(request, APP_PATH_PAGE + "cart.html", {})
+    items_product_cart = []
+    total_price = 0
+
+    if "cart" in request.session:
+        cart = request.session["cart"]
+
+        for product_id, quantity in cart.items():
+            product = Product.objects.get(id=product_id)
+            item_price = product.price_real * quantity
+
+            total_price += item_price
+            cart_item = {
+                "id": product_id,
+                "product": product,
+                "quantity": quantity,
+                "item_price": item_price
+            }
+            items_product_cart.append(cart_item)
+    return render(request, APP_PATH_PAGE + "cart.html", {
+        "title_page": "Giỏ hàng",
+        "items_product_cart": items_product_cart,
+        "total_price": total_price,
+    })
+
+
+def add_to_cart(request):
+    if request.method == "POST":
+        product_id = request.POST.get("id")
+        quantity = request.POST.get("quantity")
+
+        # trường hợp người dùng chưa add gì vào trong cart -> để tránh lỗi cho hệ thống
+        if "cart" not in request.session:
+            request.session["cart"] = {}
+
+        cart = request.session["cart"]
+        # nếu sản phẩm đã được thêm vào trước đấy thì cộng thêm số lượng
+        # Nếu không thì gán từ đấu
+        if product_id in cart:
+            cart[product_id] += int(quantity)
+        else:
+            cart[product_id] = int(quantity)
+
+        request.session.modified = True
+
+    absolute_url = request.build_absolute_uri(reverse("shop:cart"))
+
+    return redirect(absolute_url)
+
+
+def update_cart(request):
+    action = request.GET.get("action")
+    product_id = request.GET.get("productId")
+    product_id = str(product_id)
+    # lấy thông tin cart trong session, nếu không có cart -> tra ve rỗng
+    cart = request.session.get("cart", {})
+
+    if product_id in cart:
+        if action == "decrease":
+            if cart[product_id] > 1:
+                cart[product_id] -= 1
+            else:
+                del cart[product_id]
+        elif action == "increase":
+            cart[product_id] += 1
+        elif action == "delete":
+            del cart[product_id]
+
+    # gán lại giá trị cho session sau khi đã thay đổi
+    request.session["cart"] = cart
+
+    absolute_url = request.build_absolute_uri(reverse("shop:cart"))
+
+    return redirect(absolute_url)
 
 
 def checkout(request):
