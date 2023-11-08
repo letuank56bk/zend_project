@@ -20,6 +20,8 @@ urlpatterns = [
 
     path("thong-bao.html", views.success, name="success"),
 
+    path("lien-he.html", views.contact, name="contact"),
+
     path("shop.html", views.category, name="shop"),
 
     path("<slug:category_slug>.html", views.category, name="category"),

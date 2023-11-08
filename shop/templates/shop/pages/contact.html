@@ -1,4 +1,6 @@
 {% extends "shop/layout.html" %}
+{% load check_and_show_error %}
+{% load check_and_show_value %}
 
 {% load static %}
 
@@ -41,15 +43,15 @@
                 <p style="line-height: 25px">Bạn chỉ đầy đủ thông tin cá nhân và vấn đề trao đổi với ZendVN vào form
                     bên dưới, sau khi nhận được thông tin này chúng tôi sẽ liên hệ với các bạn trong thời gian sớm
                     nhất.</p>
-                <form class="contact_form" id="contact_form" name="contact_form" action="/lien-he.html"
+                <form class="contact_form" id="contact_form" name="contact_form" action="{% url "shop:contact" %}"
                     method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken"
-                        value="zQSiAUAvXGIOKnlVnor6kWukndBaHAIzZdK9vDH7we6ngdZVNyRS4ySS0Q3tFN1w">
+                   {% csrf_token %}
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="exampleInputName">Họ tên</label>
-                                <input id="form_name" name="name" class="form-control" type="text" value="">
+                                <input id="form_name" name="name" class="form-control" type="text" value="{% check_and_show_value form.name.value %}">
+                                {% check_and_show_error form.errors.name %}
 
                             </div>
                         </div>
@@ -57,21 +59,23 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail">Email</label>
                                 <input id="form_email" name="email" class="form-control email" type="email"
-                                    value="">
+                                    value="{% check_and_show_value form.email.value %}">
+                                {% check_and_show_error form.errors.email %}
 
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="exampleInputPhone">Phone</label>
-                                <input id="form_phone" name="phone" class="form-control" type="text" value="">
-
+                                <input id="form_phone" name="phone" class="form-control" type="text" value="{% check_and_show_value form.phone.value %}">
+                                {% check_and_show_error form.errors.phone %}
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Lời nhắn</label>
-                                <textarea id="form_message" name="message" class="form-control" rows="5"></textarea>
+                                <textarea id="form_message" name="message" class="form-control" rows="5">{% check_and_show_value form.message.value %}</textarea>
+                                {% check_and_show_error form.errors.message %}
 
                             </div>
                             <div class="form-group ui_kit_button mb0"><button type="submit"

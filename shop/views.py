@@ -13,7 +13,7 @@ from django.core.paginator import Paginator
 # import tập tin define.py/ helper
 from .define import *
 from .helpers import *
-from .forms import CheckoutForm
+from .forms import CheckoutForm, ContactForm
 
 
 # Create your views here.
@@ -287,7 +287,44 @@ def checkout_post(request, form, cart):
 def success(request):
     notify = NOTIFY_ORDER_SUCCESS
 
+    if request.GET.get('t') == "contact":
+        notify = NOTIFY_CONTACT_SUCCESS
+
     return render(request, APP_PATH_PAGE + "success.html", {
         "title_page": "Thông báo",
         "notify": notify
     })
+
+
+def contact(request):
+    form = ContactForm()
+
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            return contact_post(request, form)
+
+    return render(request, APP_PATH_PAGE + "contact.html", {
+        "title_page": "Liên hệ",
+        "form": form,
+    })
+
+
+def contact_post(request, form):
+    name = form.cleaned_data["name"]
+    email = form.cleaned_data["email"]
+    phone = form.cleaned_data["phone"]
+    message = form.cleaned_data["message"]
+    contacted = False
+
+    # Lưu tạm thông tin liên hệ
+    Contact.objects.create(
+        name=name,
+        email=email,
+        phone=phone,
+        message=message,
+        contacted=contacted
+    )
+
+    absolute_url = request.build_absolute_uri(reverse("shop:success")) + "?t=contact"
+    return redirect(absolute_url)
