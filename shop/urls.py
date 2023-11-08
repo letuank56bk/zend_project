@@ -18,6 +18,8 @@ urlpatterns = [
 
     path("thanh-toan.html", views.checkout, name="checkout"),
 
+    path("thong-bao.html", views.success, name="success"),
+
     path("shop.html", views.category, name="shop"),
 
     path("<slug:category_slug>.html", views.category, name="category"),

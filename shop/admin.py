@@ -121,12 +121,37 @@ class ContactAdmin(admin.ModelAdmin):
         return False
 
 
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    readonly_fields = ("order", "product", "quantity", "price", "total", "price_formatted", "total_formatted")
+    fields = ("order", "product", "quantity", "price_formatted", "total_formatted")
+
+    # Không cho xóa order item
+    can_delete = False
+
+    # Khong cho tao moi trong giao dien admin
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    @admin.display(description="Total")
+    def price_formatted(self, obj):
+        return format_currency_vietnam(obj.price)
+
+    @admin.display(description="Total")
+    def total_formatted(self, obj):
+        return format_currency_vietnam(obj.total)
+
+
 class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ("code", "name", "email", "phone", "created", "quantity", "total_formatted", "address", "total")
     fields = ("status", "code", "name", "email", "phone", "created", "quantity", "total_formatted", "address")
     list_display = ("code", "name", "email", "phone", "created", "quantity", "total_formatted", "status")
     list_filter = ["status"]
     search_fields = ["name"]
+    # Cho phép đổi status trực tiếp ở bảng quản trị admin, không cần vào bên trong
+    list_editable = ["status"]
+    # Gộp view admin của OrderItem với Order
+    inlines = [OrderItemInline]
 
     # Tự động sinh ra slug từ tên của category (sẽ có lỗi xảy ra nếu tên category là tiếng việt có dấu)
     # --> prepopulated_fields = {'slug': ('name',)}
@@ -143,21 +168,10 @@ class OrderAdmin(admin.ModelAdmin):
     def total_formatted(self, obj):
         return format_currency_vietnam(obj.total)
 
-
-class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ("order", "product", "quantity", "price_formatted", "total_formatted")
-
-    # Khong cho tao moi trong giao dien admin
-    def has_add_permission(self, request):
-        return False
-
-    @admin.display(description="Total")
-    def price_formatted(self, obj):
-        return format_currency_vietnam(obj.price)
-
-    @admin.display(description="Total")
-    def total_formatted(self, obj):
-        return format_currency_vietnam(obj.total)
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if obj.status == "finish":
+            obj.update_total_sold()
 
 
 # Thêm view Category/ CategoryAdmin vào trang admin
@@ -166,6 +180,6 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(PlantingMethod, PlantingMethodAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(Order, OrderAdmin)
-admin.site.register(OrderItem, OrderItemAdmin)
+# admin.site.register(OrderItem, OrderItemAdmin)
 
 admin.site.site_header = ADMIN_HEADER_NAME

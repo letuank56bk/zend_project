@@ -18,6 +18,10 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=0)
     total = models.DecimalField(max_digits=10, decimal_places=0)
 
+    # Thay đổi thông tin trả về trong phần thông báo trang admin
+    def __str__(self):
+        return ""
+
     class Meta:
         # Thay đổi tên hiển thị của model trong admin
         verbose_name_plural = TABLE_ORDER_ITEM_SHOW

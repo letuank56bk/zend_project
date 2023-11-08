@@ -88,4 +88,6 @@ SETTING_PRICE_COIN_TOTAL_ITEM = 5
 
 SETTING_PRICE_GOLD_TOTAL_ITEM = 5
 
+NOTIFY_ORDER_SUCCESS = "Cảm ơn bạn đã đặt hàng từ chúng tôi"
+
 ADMIN_HEADER_NAME = "Hệ Thống Quản Lý Thông Tin"

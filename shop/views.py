@@ -207,15 +207,15 @@ def checkout(request):
     cart = request.session.get("cart", {})
     form = CheckoutForm()  # validate
 
+    if not cart:
+        absolute_url = request.build_absolute_uri(reverse("shop:cart"))
+        return redirect(absolute_url)
+
     if request.method == "POST":
         form = CheckoutForm(request.POST)  # validate
+        # Xem video 4-16-4
         if form.is_valid():
-            name = form.cleaned_data["name"]
-            email = form.cleaned_data["email"]
-            phone = form.cleaned_data["phone"]
-            address = form.cleaned_data["address"]
-
-            print("data ok")
+            return checkout_post(request, form, cart)
 
     items_product_checkout = []
 
@@ -236,4 +236,58 @@ def checkout(request):
         "items_product_checkout": items_product_checkout,
         "total_order": total_order,
         "form": form,
+    })
+
+
+def checkout_post(request, form, cart):
+    name = form.cleaned_data["name"]
+    email = form.cleaned_data["email"]
+    phone = form.cleaned_data["phone"]
+    address = form.cleaned_data["address"]
+    code = generate_order_code(8)
+
+    # Lưu tạm thông tin đơn hàng
+    order = Order.objects.create(
+        code=code,
+        name=name,
+        email=email,
+        phone=phone,
+        address=address
+    )
+
+    total_order = 0
+    quantity_order = 0
+
+    for product_id, quantity in cart.items():
+        product = Product.objects.get(id=product_id)
+        price = product.price_real
+        total = price * quantity
+
+        OrderItem.objects.create(
+            order=order,
+            product=product,
+            quantity=quantity,
+            price=price,
+            total=total
+        )
+
+        total_order += total
+        quantity_order += quantity
+
+    order.quantity = quantity_order
+    order.total = total_order
+    order.save()
+
+    del request.session["cart"]
+
+    absolute_url = request.build_absolute_uri(reverse("shop:success")) + "?t=order"
+    return redirect(absolute_url)
+
+
+def success(request):
+    notify = NOTIFY_ORDER_SUCCESS
+
+    return render(request, APP_PATH_PAGE + "success.html", {
+        "title_page": "Thông báo",
+        "notify": notify
     })

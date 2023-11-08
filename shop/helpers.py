@@ -1,4 +1,6 @@
 import os
+import random
+import string
 import uuid
 import re
 
@@ -45,3 +47,7 @@ def chunked(items, quantity_per_group):
     return result
 
 
+# Tạo mã đơn hàng ngẫu nhiên
+def generate_order_code(length):
+    letters = string.ascii_uppercase + string.digits
+    return "".join(random.choice(letters) for _ in range(length))
