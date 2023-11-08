@@ -203,4 +203,24 @@ def update_cart(request):
 
 
 def checkout(request):
-    return render(request, APP_PATH_PAGE + "checkout.html", {})
+    cart = request.session.get("cart", {})
+
+    items_product_checkout = []
+
+    total_order = 0
+
+    if "cart" in request.session:
+        for product_id, quantity in cart.items():
+            product = Product.objects.get(id=product_id)
+            name = product.name
+            total = product.price_real * quantity
+
+            total_order += total
+
+            items_product_checkout.append({"name": name, "total": total, "quantity": quantity})
+
+    return render(request, APP_PATH_PAGE + "checkout.html", {
+        "title_page": "Thanh toán đơn hàng",
+        "items_product_checkout": items_product_checkout,
+        "total_order": total_order
+    })
