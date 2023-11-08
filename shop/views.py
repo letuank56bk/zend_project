@@ -13,6 +13,7 @@ from django.core.paginator import Paginator
 # import tập tin define.py/ helper
 from .define import *
 from .helpers import *
+from .forms import CheckoutForm
 
 
 # Create your views here.
@@ -204,6 +205,17 @@ def update_cart(request):
 
 def checkout(request):
     cart = request.session.get("cart", {})
+    form = CheckoutForm()  # validate
+
+    if request.method == "POST":
+        form = CheckoutForm(request.POST)  # validate
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            phone = form.cleaned_data["phone"]
+            address = form.cleaned_data["address"]
+
+            print("data ok")
 
     items_product_checkout = []
 
@@ -222,5 +234,6 @@ def checkout(request):
     return render(request, APP_PATH_PAGE + "checkout.html", {
         "title_page": "Thanh toán đơn hàng",
         "items_product_checkout": items_product_checkout,
-        "total_order": total_order
+        "total_order": total_order,
+        "form": form,
     })

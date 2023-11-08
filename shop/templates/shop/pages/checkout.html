@@ -2,36 +2,39 @@
 
 {% load static %}
 {% load format_currency_vietnam %}
+{% load check_and_show_error %}
+{% load check_and_show_value %}
 
 {% block content %}
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
                 <h4>Thông Tin Người Nhận</h4>
-                <form action="/thanh-toan.html" method="post">
-                    <input type="hidden" name="csrfmiddlewaretoken"
-                           value="KGVNPPEndhIGFonf7XZDMuYGMe7IhgiuwGP4DOw3D73p2GYMtv8LyfnonJudCRs8">
+                <form action="{% url "shop:checkout" %}" method="post">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="checkout__input">
                                 <p>Họ Tên<span>*</span></p>
-                                <input type="text" name="name" value="">
+                                <input type="text" name="name" value="{% check_and_show_value form.name.value %}">
+                                {% check_and_show_error form.errors.name %}
 
                             </div>
                             <div class="checkout__input">
                                 <p>Email<span>*</span></p>
-                                <input type="text" name="email" value="">
+                                <input type="text" name="email" value="{% check_and_show_value form.email.value %}">
+                                {% check_and_show_error form.errors.email %}
 
                             </div>
                             <div class="checkout__input">
                                 <p>Số Điện Thoại<span>*</span></p>
-                                <input type="text" name="phone" value="">
-
+                                <input type="text" name="phone" value="{% check_and_show_value form.phone.value %}">
+                                {% check_and_show_error form.errors.phone %}
                             </div>
                             <div class="checkout__input">
                                 <p>Địa Chỉ<span>*</span></p>
-                                <textarea name="address"></textarea>
-
+                                <textarea name="address">{% check_and_show_value form.address.value %}</textarea>
+                                {% check_and_show_error form.errors.address %}
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
