@@ -22,6 +22,8 @@ urlpatterns = [
 
     path("lien-he.html", views.contact, name="contact"),
 
+    path("kiem-tra-don-hang.html", views.check_order, name="check_order"),
+
     path("shop.html", views.category, name="shop"),
 
     path("<slug:category_slug>.html", views.category, name="category"),

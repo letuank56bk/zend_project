@@ -3,26 +3,66 @@
 {% load static %}
 
 {% block content %}
-<!-- Checkout Section Begin -->
-<section class="checkout spad">
-    <div class="container">
-        <div class="checkout__form">
-            <h4>Kiểm Tra Đơn Hàng</h4>
-            <form action="/kiem-tra-don-hang.html" method="POST" class="mt-3 mb-3">
-                <input type="hidden" name="csrfmiddlewaretoken"
-                    value="cfbwWEPKhh7ZVZEtUYQlnSKRgLSBqpXiWn3A8gye5YEse0UkaMbe15YR2YYGOycF">
-                <div class="checkout__input d-flex justify-content-center">
-                    <input type="text" style="width: 85%;" placeholder="Nhập mã đơn hàng..." name="code" value="">
-                    <button type="submit" class="site-btn" style="width: 15%">Tra Cứu</button>
-                </div>
-            </form>
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <h4>Kiểm Tra Đơn Hàng</h4>
+                <form action="{% url "shop:check_order" %}" method="POST" class="mt-3 mb-3">
+                    {% csrf_token %}
+                    <div class="checkout__input d-flex justify-content-center">
+                        <input type="text" style="width: 85%;" placeholder="Nhập mã đơn hàng..." name="code"
+                               value="{{ order_code }}">
+                        <button type="submit" class="site-btn" style="width: 15%">Tra Cứu</button>
+                    </div>
+                </form>
 
+                {% if item_order %}
+                    <article class="card">
+                        <header class="card-header"> Thông Tin Đơn Hàng</header>
+                        <div class="card-body">
+                            <h6>Mã Đơn Hàng: {{ item_order.code }}</h6>
+                            <article class="card">
+                                <div class="card-body row">
+                                    <div class="col"><strong>Ngày đặt hàng:</strong> <br>{{ item_order.created|date:"d/m/Y" }}</div>
+                                    <div class="col"><strong>Tên người nhận:</strong> <br>{{ item_order.name }}</div>
+                                    <div class="col"><strong>Số điện thoại:</strong> <br> <i
+                                            class="fa fa-phone"></i> {{ item_order.phone }}
+                                    </div>
+                                    <div class="col"><strong>Địa chỉ nhận:</strong> <br> {{ item_order.address }}</div>
+                                </div>
+                            </article>
+                            <div class="track">
+                                <div class="step active"><span class="icon"> <i
+                                        class="fa fa-exclamation-circle"></i> </span> <span
+                                        class="text">Chờ Xác Nhận</span>
+                                </div>
+                                <div class="step {% if item_order.status != "order" %}active{% endif %}"><span
+                                        class="icon"> <i class="fa fa-check"></i> </span> <span
+                                        class="text"> Đã Xác Nhận</span></div>
+                                <div class="step {% if item_order.status != "order" and item_order.status != "confirm" %}active{% endif %}">
+                                    <span class="icon"> <i class="fa fa-truck"></i> </span> <span
+                                        class="text"> Đang Giao Hàng</span></div>
+                                <div class="step {% if item_order.status == "finish" %}active{% endif %}"><span
+                                        class="icon"> <i class="fa fa-home"></i> </span> <span
+                                        class="text">Giao Thành Công</span>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </article>
+                {% endif %}
 
+                {% if error_message %}
+                    <div class="error-message">{{ error_message }}</div>
+                {% endif %}
 
-            <img src="static/shop/assets/img/order-tracking.png" class="mt-3">
+                {% if not item_order %}
+                    <img src="static/shop/assets/img/order-tracking.png" class="mt-3">
+                {% endif %}
 
+            </div>
         </div>
-    </div>
-</section>
-<!-- Checkout Section End -->
+    </section>
+    <!-- Checkout Section End -->
 {% endblock %}

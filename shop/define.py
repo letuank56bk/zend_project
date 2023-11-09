@@ -92,4 +92,8 @@ NOTIFY_ORDER_SUCCESS = "Cảm ơn bạn đã đặt hàng từ chúng tôi"
 
 NOTIFY_CONTACT_SUCCESS = "Cảm ơn bạn đã liên hệ với chúng tôi"
 
+NOTIFY_ORDER_CHECK_NOT_EXIST = "Không tìm thấy đơn hàng, vui lòng kiểm tra lại mã đơn!"
+
+NOTIFY_ORDER_CHECK_NOT_NULL = "Vui lòng nhập mã đơn hàng!"
+
 ADMIN_HEADER_NAME = "Hệ Thống Quản Lý Thông Tin"

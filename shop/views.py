@@ -317,7 +317,7 @@ def contact_post(request, form):
     message = form.cleaned_data["message"]
     contacted = False
 
-    # Lưu tạm thông tin liên hệ
+    # Lưu thông tin liên hệ
     Contact.objects.create(
         name=name,
         email=email,
@@ -328,3 +328,36 @@ def contact_post(request, form):
 
     absolute_url = request.build_absolute_uri(reverse("shop:success")) + "?t=contact"
     return redirect(absolute_url)
+
+
+def check_order(request):
+    if request.method == "POST":
+        return check_order_post(request)
+
+    return render(request, APP_PATH_PAGE + "check-order.html", {
+        "title_page": "Kiểm tra đơn hàng"
+    })
+
+
+def check_order_post(request):
+    order_code = request.POST.get("code", {})
+    error_message = None
+    item_order = None
+
+    # Loại bỏ khoảng trắng trước và sau đoạn code
+    order_code = order_code.strip()
+
+    if order_code == "":
+        error_message = NOTIFY_ORDER_CHECK_NOT_NULL
+    else:
+        try:
+            item_order = Order.objects.get(code=order_code)
+        except Order.DoesNotExist:
+            error_message = NOTIFY_ORDER_CHECK_NOT_EXIST
+
+    return render(request, APP_PATH_PAGE + "check-order.html", {
+        "title_page": "Kiểm tra đơn hàng",
+        "order_code": order_code,
+        "error_message": error_message,
+        "item_order": item_order
+    })
