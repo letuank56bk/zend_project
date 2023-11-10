@@ -6,19 +6,10 @@
                     <i class="fa fa-bars"></i>
                     <span>Danh Mục</span>
                 </div>
-                <ul>
-
-                    <li class=""><a href="/cay-canh-de-ban.html">Cây Cảnh Để Bàn</a></li>
-
-                    <li class=""><a href="/cay-van-phong.html">Cây Văn Phòng</a></li>
-
-                    <li class=""><a href="/cay-san-vuon.html">Cây Sân Vườn</a></li>
-
-                    <li class=""><a href="/cay-an-qua.html">Cây Ăn Quả</a></li>
-
-                    <li class=""><a href="/sen-da-xuong-rong.html">Sen Đá, Xương Rồng</a></li>
-
-                    <li class=""><a href="/chau-treo-day-leo.html">Chậu Treo - Dây Leo</a></li>
+                <ul class="list-category">
+                    {% for item in items_category_menu %}
+                        <li data-active="{{ item.slug }}"><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></li>
+                    {% endfor %}
 
                 </ul>
             </div>
@@ -27,7 +18,8 @@
             <div class="hero__search">
                 <div class="hero__search__form">
                     <form action="{% url "shop:shop" %}" method="get">
-                        <input type="text" placeholder="Bạn cần tìm sản phẩm gì?" name="keyword" value="{{ params.keyword }}">
+                        <input type="text" placeholder="Bạn cần tìm sản phẩm gì?" name="keyword"
+                               value="{{ params.keyword }}">
                         <button type="submit" class="site-btn">Tìm Kiếm</button>
                     </form>
                 </div>

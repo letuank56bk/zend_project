@@ -1,6 +1,6 @@
-<ul>
-    <li class="active"><a href="/">Trang Chủ</a></li>
-    <li><a href="./shop.html">Cửa Hàng</a></li>
-    <li><a href="/lien-he.html">Liên Hệ</a></li>
-    <li><a href="/kiem-tra-don-hang.html">Đơn Hàng</a></li>
+<ul class="main-nav">
+    <li><a href="{% url 'shop:index' %}">Trang Chủ</a></li>
+    <li data-active="{{ item_category.slug }}"><a href="{% url 'shop:shop' %}">Cửa Hàng</a></li>
+    <li><a href="{% url 'shop:contact' %}">Liên Hệ</a></li>
+    <li><a href="{% url 'shop:check_order' %}">Đơn Hàng</a></li>
 </ul>

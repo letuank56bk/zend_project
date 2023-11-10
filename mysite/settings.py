@@ -80,7 +80,9 @@ TEMPLATES = [
                 "news.my_context.items_article_footer_random",
                 "news.my_context.items_article_header_trending",
                 "news.my_context.items_price_sidebar_coin",
-                "news.my_context.items_price_sidebar_gold"
+                "news.my_context.items_price_sidebar_gold",
+                "shop.my_context.items_category_menu",
+                "shop.my_context.item_cart_info",
             ],
         },
     },

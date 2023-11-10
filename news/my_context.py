@@ -126,7 +126,6 @@ def items_price_sidebar_gold(request):
 
     items_price_sidebar_gold = []
 
-
     try:
         response = requests.get(url)
         if response.status_code == 200:
